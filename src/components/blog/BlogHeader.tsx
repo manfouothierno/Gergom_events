@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 export default function BlogHeader() {
     return (
-        <section className="bg-[#006400] py-16 relative overflow-hidden">
+        <section className="bg-[#006400] mt-16 py-24 relative overflow-hidden">
             {/* Motif de fond */}
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute left-0 top-0 w-full h-full bg-white"
