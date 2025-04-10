@@ -33,6 +33,7 @@ const mainItems: MenuItem[] = [
     // { name: 'Réalisations', href: '/realisations' },
     { name: 'À Propos', href: '/a-propos' },
     { name: 'Contact', href: '/contact' },
+    { name: 'Nos Prestations', href: '/nos-prestations' },
 
 ];
 
@@ -124,24 +125,7 @@ const Header = () => {
                         isScrolled ? 'h-8 overflow-hidden' : 'h-10'
                     }`}
                 >
-                    <button
-                        className={`absolute left-0 px-2 py-1 text-xs rounded-full flex items-center z-10 ${
-                            isServicesExpanded
-                                ? 'bg-red-600 text-white'
-                                : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
-                        }`}
-                        onClick={() => setIsServicesExpanded(!isServicesExpanded)}
-                    >
-                        {isServicesExpanded ? 'Réduire' : 'Tous nos services'}
-                        <svg
-                            className={`ml-1 w-3 h-3 transition-transform ${isServicesExpanded ? 'rotate-180' : ''}`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
+
 
                     <div
                         className={`flex items-center space-x-1 transition-all px-4 py-1 rounded-full bg-gray-50 mx-auto ${

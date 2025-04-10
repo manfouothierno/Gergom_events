@@ -187,66 +187,7 @@ const PartnersSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                    <h3 className="text-2xl font-semibold text-center mb-10 text-gray-800">
-                        Ce que disent nos clients
-                    </h3>
 
-                    <div className="relative max-w-4xl mx-auto">
-                        {/* Témoignages avec transition */}
-                        <div className="overflow-hidden">
-                            <div className="relative h-[360px] md:h-[300px]">
-                                {testimonials.map((testimonial, index) => (
-                                    <motion.div
-                                        key={testimonial.id}
-                                        className="absolute inset-0 flex flex-col md:flex-row items-center bg-white rounded-xl shadow-lg overflow-hidden transition-all"
-                                        initial={{ opacity: 0, x: 100 }}
-                                        animate={{
-                                            opacity: index === activeTestimonialIndex ? 1 : 0,
-                                            x: index === activeTestimonialIndex ? 0 : 100,
-                                            pointerEvents: index === activeTestimonialIndex ? 'auto' : 'none'
-                                        }}
-                                        transition={{ duration: 0.6 }}
-                                    >
-                                        <div className="relative h-32 md:h-full md:w-1/3 w-full overflow-hidden">
-                                            <Image
-                                                src={testimonial.image}
-                                                alt={testimonial.name}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        </div>
-                                        <div className="p-6 md:p-8 md:w-2/3">
-                                            <FaQuoteLeft className="text-red-600 opacity-20 text-4xl absolute top-6 right-6" />
-                                            <RatingStars rating={testimonial.rating} />
-                                            <p className="text-gray-700 mb-4 italic">
-                                                "{testimonial.content}"
-                                            </p>
-                                            <div className="mt-4">
-                                                <h4 className="font-bold text-gray-800">{testimonial.name}</h4>
-                                                <p className="text-gray-600 text-sm">{testimonial.company}</p>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Indicateurs et navigation */}
-                        <div className="flex justify-center mt-8">
-                            {testimonials.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setActiveTestimonialIndex(index)}
-                                    className={`w-3 h-3 mx-1 rounded-full transition-all ${
-                                        activeTestimonialIndex === index
-                                            ? 'bg-red-600 w-6'
-                                            : 'bg-gray-300 hover:bg-gray-400'
-                                    }`}
-                                    aria-label={`Témoignage ${index + 1}`}
-                                />
-                            ))}
-                        </div>
-                    </div>
                 </motion.div>
             </div>
         </section>

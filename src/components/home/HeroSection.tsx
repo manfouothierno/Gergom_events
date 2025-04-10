@@ -203,7 +203,7 @@ const HeroSection = () => {
                         </Link>
                         <Link href="/contact">
                             <motion.button
-                                className="bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 text-white border border-white px-6 py-3 rounded-md text-lg font-medium transition-colors shadow-lg"
+                                className="bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 text-black border border-white px-6 py-3 rounded-md text-lg font-medium transition-colors shadow-lg"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
