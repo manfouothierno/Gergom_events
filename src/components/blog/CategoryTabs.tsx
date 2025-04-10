@@ -1,14 +1,19 @@
-// src/components/nos-prestations/CategoryTabs.tsx
+// src/components/blog/CategoryTabs.tsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 
 export default function CategoryTabs({ categories }) {
     const router = useRouter()
     const searchParams = useSearchParams()
-    const currentCategory = searchParams.get('categorie') || 'all'
+    const [currentCategory, setCurrentCategory] = useState('all')
+
+    // Utiliser useEffect pour obtenir la valeur du paramètre après le rendu initial
+    useEffect(() => {
+        setCurrentCategory(searchParams.get('categorie') || 'all')
+    }, [searchParams])
 
     const handleCategoryChange = (categoryId) => {
         if (categoryId === 'all') {

@@ -1,5 +1,5 @@
 // src/app/(main)/nos-prestations/page.tsx
-import React from 'react'
+import React, {Suspense} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import BlogHeader from '@/components/blog/BlogHeader'
@@ -23,6 +23,10 @@ const categories = [
     { id: 'institutional', name: 'Institutionnel' },
     { id: 'show', name: 'Spectacle' }
 ]
+// Composant de chargement pour Suspense
+function LoadingUI() {
+    return <div className="p-4 text-center">Chargement...</div>
+}
 
 export default function BlogPage() {
     return (
@@ -47,7 +51,9 @@ export default function BlogPage() {
             {/* Filtres par catégorie */}
             <section className="bg-gray-50 py-8">
                 <div className="container mx-auto px-4">
-                    <CategoryTabs categories={categories} />
+                    <Suspense fallback={<LoadingUI />}>
+                        <CategoryTabs categories={categories} />
+                    </Suspense>
                 </div>
             </section>
 
@@ -58,7 +64,9 @@ export default function BlogPage() {
                         {/* Articles principaux */}
                         <div className="w-full lg:w-2/3">
                             <h2 className="text-2xl font-bold mb-8 text-gray-800">Nos dernières réalisations</h2>
-                            <PostGrid />
+                            <Suspense fallback={<LoadingUI />}>
+                                <PostGrid />
+                            </Suspense>
                         </div>
 
                         {/* Sidebar */}
