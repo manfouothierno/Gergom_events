@@ -153,7 +153,7 @@ const HeroSection = () => {
                                 <div>
                                     {/* Titre avec animation de frappe séquentielle */}
                                     <motion.h1
-                                        className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
+                                        className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
                                         variants={titleVariants}
                                         initial="hidden"
                                         animate="visible"
