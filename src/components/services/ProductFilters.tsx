@@ -92,12 +92,12 @@ const ProductFilters = ({ categories }: ProductFiltersProps) => {
                     <div className="border-l h-6 mx-2 border-gray-300 hidden sm:block"></div>
 
                     <div className="flex items-center space-x-2">
-                        <button className="px-4 py-2 bg-white hover:bg-gray-100 rounded-full text-gray-700 flex items-center">
-                            <span className="hidden sm:inline">Disponibilité</span>
-                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
+                        {/*<button className="px-4 py-2 bg-white hover:bg-gray-100 rounded-full text-gray-700 flex items-center">*/}
+                        {/*    <span className="hidden sm:inline">Disponibilité</span>*/}
+                        {/*    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">*/}
+                        {/*        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />*/}
+                        {/*    </svg>*/}
+                        {/*</button>*/}
 
                         <button className="px-4 py-2 bg-white hover:bg-gray-100 rounded-full text-gray-700 flex items-center">
                             <span className="hidden sm:inline">Tri</span>

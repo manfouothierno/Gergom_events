@@ -12,7 +12,7 @@ const faqs = [
     },
     {
         question: 'Quel délai prévoir pour réserver votre matériel ?',
-        answer: 'Les délais de réservation varient selon la période et le type de matériel. Pour les périodes chargées (mai à septembre), nous recommandons de réserver au moins 2 à 3 mois à l\'avance. Pour le reste de l\'année, un délai de 3 à 4 semaines est généralement suffisant. Pour les événements de grande ampleur, prévoyez 4 à 6 mois d\'avance.'
+        answer: 'Les délais de réservation varient selon la période et le type de matériel. Nous recommandons de réserver au moins 2 à 3 mois à l\'avance. Pour le reste de l\'année, pour la garantie d\'avoir le matériel disponible à la location merci de prévoir un délai de 48h minimum.'
     },
     {
         question: 'Proposez-vous une visite technique préalable à l\'événement ?',
@@ -24,7 +24,7 @@ const faqs = [
     },
     {
         question: 'Que se passe-t-il en cas de panne pendant l\'événement ?',
-        answer: 'Notre matériel est systématiquement vérifié avant chaque location. Néanmoins, en cas de problème technique pendant votre événement, un technicien d\'astreinte est toujours disponible et peut intervenir rapidement. Pour les événements importants, un technicien reste généralement sur place pendant toute la durée de la prestation.'
+        answer: 'Notre matériel est systématiquement vérifié avant chaque location. Néanmoins, en cas de problème technique pendant votre événement, un technicien d\'astreinte est toujours disponible et peut intervenir rapidement. Pour les événements importants, un technicien reste généralement sur place pendant toute la durée de la prestation. L\'installation et la configuration de tout le matériel selon les termes du devis'
     }
 ]
 

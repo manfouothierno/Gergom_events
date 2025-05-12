@@ -8,41 +8,41 @@ import { motion } from 'framer-motion'
 // Données de l'équipe
 const teamMembers = [
     {
-        name: 'Gérald Gomez',
-        role: 'Fondateur & Directeur',
+        name: 'Arnaud Gergonne',
+        role: 'Directeur et créateur ',
         image: '/images/team/gerald-gomez.jpg',
-        bio: "Passionné par l'événementiel depuis plus de 20 ans, Gérald a fondé Gergom Events avec la vision de créer une entreprise alliant expertise technique et créativité. Il supervise aujourd'hui l'ensemble des opérations et le développement stratégique."
+        bio: "Passionné par l'événementiel depuis plus de 20 ans, Arnaud a fondé Gergom Events avec la vision de créer une entreprise alliant expertise technique , créativité et  valeurs humaines. Il supervise aujourd'hui l'ensemble des opérations et le développement stratégique."
     },
     {
-        name: 'Sophie Laurent',
-        role: 'Directrice Commerciale',
+        name: 'Kévin 1',
+        role: 'DJ',
         image: '/images/team/sophie-laurent.jpg',
-        bio: "Avec 15 ans d'expérience dans l'événementiel, Sophie est le premier contact de nos clients. Elle analyse vos besoins et coordonne avec les équipes techniques pour concevoir la solution parfaitement adaptée à votre projet."
+        bio: "DJ passionné qui gère la partie son lumière et vidéo"
     },
     {
-        name: 'Thomas Moreau',
-        role: 'Directeur Technique',
+        name: 'Kévin 2 ',
+        role: 'Responsable logistique mobilier',
         image: '/images/team/thomas-moreau.jpg',
-        bio: "Ingénieur du son de formation, Thomas supervise toutes nos installations techniques. Expert en sonorisation et éclairage, il veille à la qualité et à la sécurité de chaque dispositif mis en place."
+        bio: "Ancien joueur pro de rugby, responsable logistique mobilier, ses valeurs de rugbyman collent parfaitement aux valeurs et ambitions de la société"
     },
-    {
-        name: 'Émilie Dupont',
-        role: 'Responsable Logistique',
-        image: '/images/team/emilie-dupont.jpg',
-        bio: "Émilie orchestre la préparation, l'acheminement et l'installation de notre matériel. Sa rigueur et son sens de l'organisation sont essentiels pour garantir le bon déroulement de chaque événement."
-    },
-    {
-        name: 'Julien Petit',
-        role: 'Technicien Son Senior',
-        image: '/images/team/julien-petit.jpg',
-        bio: "Expert en sonorisation live et en studio, Julien assure une qualité sonore optimale pour tous types d'événements, des concerts aux conférences, en passant par les mariages."
-    },
-    {
-        name: 'Laura Martin',
-        role: 'Designer Lumière',
-        image: '/images/team/laura-martin.jpg',
-        bio: "Spécialiste de la mise en lumière, Laura crée des ambiances uniques et personnalisées. Son expertise technique et son sens artistique transforment n'importe quel espace."
-    }
+    // {
+    //     name: 'Émilie Dupont',
+    //     role: 'Responsable Logistique',
+    //     image: '/images/team/emilie-dupont.jpg',
+    //     bio: "Émilie orchestre la préparation, l'acheminement et l'installation de notre matériel. Sa rigueur et son sens de l'organisation sont essentiels pour garantir le bon déroulement de chaque événement."
+    // },
+    // {
+    //     name: 'Julien Petit',
+    //     role: 'Technicien Son Senior',
+    //     image: '/images/team/julien-petit.jpg',
+    //     bio: "Expert en sonorisation live et en studio, Julien assure une qualité sonore optimale pour tous types d'événements, des concerts aux conférences, en passant par les mariages."
+    // },
+    // {
+    //     name: 'Laura Martin',
+    //     role: 'Designer Lumière',
+    //     image: '/images/team/laura-martin.jpg',
+    //     bio: "Spécialiste de la mise en lumière, Laura crée des ambiances uniques et personnalisées. Son expertise technique et son sens artistique transforment n'importe quel espace."
+    // }
 ]
 
 export default function TeamSection() {

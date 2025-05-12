@@ -54,7 +54,7 @@ const CtaSection = () => {
         { icon: FaCalendarCheck, value: 500, label: "Événements / an" },
         { icon: FaHeadset, value: "15+", label: "Années d'expérience" },
         { icon: FaUsers, value: 1000, label: "Clients satisfaits" },
-        { icon: FaTools, value: 48, label: "Heures d'intervention max" }
+        // { icon: FaTools, value: 48, label: "Heures d'intervention max" }
     ]
 
     return (
@@ -113,7 +113,7 @@ const CtaSection = () => {
                             whileTap={{ scale: 0.98 }}
                         >
                             <FaHeadset />
-                            Contactez nos experts
+                            Contactez nous
                         </motion.button>
                     </Link>
                 </motion.div>

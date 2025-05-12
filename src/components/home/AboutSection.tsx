@@ -152,7 +152,7 @@ const AboutSection = () => {
                             <h2 className="text-3xl font-bold mb-6 text-gray-800">Qui Sommes-Nous</h2>
 
                             <p className="text-gray-700 mb-4 text-lg leading-relaxed">
-                                <span className="font-semibold">Depuis 15 ans, Gergom Events transforme vos idées en expériences sensorielles complètes.</span> De la conception à la réalisation, notre expertise dans le domaine événementiel nous permet de vous proposer des solutions adaptées à vos besoins spécifiques.
+                                <span className="font-semibold">Depuis 2010, Gergom Events transforme vos idées en expériences sensorielles complètes.</span>Du conseil, de la conception à la réalisation, notre expertise dans le domaine événementiel nous permet de vous proposer des solutions adaptées à vos besoins spécifiques.
                             </p>
 
                             <p className="text-gray-700 mb-6 text-lg leading-relaxed">

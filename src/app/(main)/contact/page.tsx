@@ -72,21 +72,21 @@ export default function ContactPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                         {/* Service commercial */}
-                        <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-                            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Image
-                                    src="/images/icons/icon-commercial.svg"
-                                    alt="Commercial"
-                                    width={32}
-                                    height={32}
-                                />
-                            </div>
-                            <h3 className="text-xl font-bold mb-2 text-gray-800">Service commercial</h3>
-                            <p className="text-gray-600 mb-3">Pour toute demande de devis et information sur nos services</p>
-                            <a href="mailto:commercial@gergom-events.fr" className="text-red-600 font-medium hover:text-red-700">
-                                commercial@gergom-events.fr
-                            </a>
-                        </div>
+                        {/*<div className="bg-white p-6 rounded-lg shadow-sm text-center">*/}
+                        {/*    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">*/}
+                        {/*        <Image*/}
+                        {/*            src="/images/icons/icon-commercial.svg"*/}
+                        {/*            alt="Commercial"*/}
+                        {/*            width={32}*/}
+                        {/*            height={32}*/}
+                        {/*        />*/}
+                        {/*    </div>*/}
+                        {/*    <h3 className="text-xl font-bold mb-2 text-gray-800">Service commercial</h3>*/}
+                        {/*    <p className="text-gray-600 mb-3">Pour toute demande de devis et information sur nos services</p>*/}
+                        {/*    <a href="mailto:commercial@gergom-events.fr" className="text-red-600 font-medium hover:text-red-700">*/}
+                        {/*        commercial@gergom-events.fr*/}
+                        {/*    </a>*/}
+                        {/*</div>*/}
 
                         {/* Support technique */}
                         <div className="bg-white p-6 rounded-lg shadow-sm text-center">
@@ -105,22 +105,22 @@ export default function ContactPage() {
                             </a>
                         </div>
 
-                        {/* Service après-vente */}
-                        <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-                            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Image
-                                    src="/images/icons/icon-sav.svg"
-                                    alt="SAV"
-                                    width={32}
-                                    height={32}
-                                />
-                            </div>
-                            <h3 className="text-xl font-bold mb-2 text-gray-800">Service après-vente</h3>
-                            <p className="text-gray-600 mb-3">Pour le suivi de vos commandes et le service après-vente</p>
-                            <a href="mailto:sav@gergom-events.fr" className="text-red-600 font-medium hover:text-red-700">
-                                sav@gergom-events.fr
-                            </a>
-                        </div>
+                        {/*/!* Service après-vente *!/*/}
+                        {/*<div className="bg-white p-6 rounded-lg shadow-sm text-center">*/}
+                        {/*    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">*/}
+                        {/*        <Image*/}
+                        {/*            src="/images/icons/icon-sav.svg"*/}
+                        {/*            alt="SAV"*/}
+                        {/*            width={32}*/}
+                        {/*            height={32}*/}
+                        {/*        />*/}
+                        {/*    </div>*/}
+                        {/*    <h3 className="text-xl font-bold mb-2 text-gray-800">Service après-vente</h3>*/}
+                        {/*    <p className="text-gray-600 mb-3">Pour le suivi de vos commandes et le service après-vente</p>*/}
+                        {/*    <a href="mailto:sav@gergom-events.fr" className="text-red-600 font-medium hover:text-red-700">*/}
+                        {/*        sav@gergom-events.fr*/}
+                        {/*    </a>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </section>

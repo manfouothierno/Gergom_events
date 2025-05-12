@@ -203,11 +203,6 @@ const servicesData: Record<string, ServiceData> = {
                 description: 'Une équipe d\'experts en éclairage pour installer et piloter vos systèmes lumineux.',
                 iconName: 'FaUsers'
             },
-            {
-                title: 'Économie d\'énergie',
-                description: 'Des technologies LED récentes qui réduisent la consommation tout en maximisant l\'effet visuel.',
-                iconName: 'FaChartLine'
-            }
         ],
 
         applications: [
@@ -223,13 +218,14 @@ const servicesData: Record<string, ServiceData> = {
 
         subcategories: [
             { id: 'all', name: 'Tous les produits' },
-            { id: 'lyres', name: 'Lyres et têtes mobiles' },
+            { id: 'lyres', name: 'Lyres' },
             { id: 'projecteurs', name: 'Projecteurs LED' },
             { id: 'par-led', name: 'PAR LED' },
             { id: 'effets', name: 'Effets lumineux' },
             { id: 'laser', name: 'Lasers' },
             { id: 'controle', name: 'Contrôleurs' },
-            { id: 'structures', name: 'Structures et pieds' }
+            { id: 'structures', name: 'Structures et pieds' },
+            { id: 'lumières', name: 'Machines à lumières' },
         ],
 
         products: [
@@ -363,7 +359,7 @@ const servicesData: Record<string, ServiceData> = {
 
     'video': {
         slug: 'video',
-        name: 'Images & Vidéos',
+        name: 'Ecran & Vidéos',
         title: 'IMMORTALISEZ DES SOUVENIRS EN HAUTE DÉFINITION',
         subtitle: 'Solutions audiovisuelles professionnelles pour capturer et projeter vos moments forts',
         color: '#c4d602',
@@ -419,6 +415,17 @@ const servicesData: Record<string, ServiceData> = {
 
         products: [
             {
+                id: 7,
+                name: 'Écran LED 3x2m P3.9 (indoor et outdoor)',
+                category: 'ecrans',
+                image: '/images/products/video/ecran-led-3x2m.jpg',
+                isAvailableForRent: true,
+                isAvailableForSale: false,
+                price: 'À partir de 350€/jour',
+                description: `Mur d'images LED haute résolution pour affichage intérieur, modularité permettant différentes tailles et formats selon besoin.`,
+                specs: ['Pitch 3.9mm', '3x2 mètres', 'Luminosité 1200nits', 'Angle vision 160°']
+            },
+            {
                 id: 1,
                 name: 'Vidéoprojecteur Laser 7000 Lumens',
                 category: 'videoprojecteurs',
@@ -429,17 +436,7 @@ const servicesData: Record<string, ServiceData> = {
                 description: `Vidéoprojecteur laser haute luminosité pour projection même en environnement lumineux, idéal pour grandes salles et événements professionnels.`,
                 specs: ['7000 Lumens', 'Full HD 1080p', 'Contraste 100 000:1', 'HDMI/USB/VGA']
             },
-            {
-                id: 2,
-                name: 'Écran de projection 4m',
-                category: 'ecrans',
-                image: '/images/products/video/ecran-projection-4m.jpg',
-                isAvailableForRent: true,
-                isAvailableForSale: false,
-                price: 'À partir de 60€/jour',
-                description: `Grand écran de projection avec cadre autoportant, installation rapide sans outils, surface haute définition mate anti-reflets.`,
-                specs: ['4x3 mètres', 'Format 4:3 ou 16:9', 'Gain 1.1', 'Autoportant']
-            },
+
             {
                 id: 3,
                 name: 'Caméra Professionnelle Sony',
@@ -484,17 +481,7 @@ const servicesData: Record<string, ServiceData> = {
                 description: `Ensemble complet pour diffusion live incluant caméra, mélangeur, micros, encodeur et connexion internet dédiée.`,
                 specs: ['Caméra Full HD', 'Mélangeur', 'Encodeur', 'Connexion 4G secours']
             },
-            {
-                id: 7,
-                name: 'Écran LED 3x2m P3.9',
-                category: 'ecrans',
-                image: '/images/products/video/ecran-led-3x2m.jpg',
-                isAvailableForRent: true,
-                isAvailableForSale: false,
-                price: 'À partir de 350€/jour',
-                description: `Mur d'images LED haute résolution pour affichage intérieur, modularité permettant différentes tailles et formats selon besoin.`,
-                specs: ['Pitch 3.9mm', '3x2 mètres', 'Luminosité 1200nits', 'Angle vision 160°']
-            },
+
             {
                 id: 8,
                 name: 'Vidéoprojecteur Courte Focale 4K',
@@ -823,7 +810,7 @@ const servicesData: Record<string, ServiceData> = {
             },
             {
                 id: 2,
-                name: 'Sparkular Pro',
+                name: 'Sparkular Mini',
                 category: 'etincelles',
                 image: '/images/products/effets/sparkular-pro.jpg',
                 isAvailableForRent: true,
@@ -834,8 +821,8 @@ const servicesData: Record<string, ServiceData> = {
             },
             {
                 id: 3,
-                name: 'Canon à confettis DMX',
-                category: 'confettis',
+                name: 'Canon à confettis à air comprimé',
+                category: 'comprimé',
                 image: '/images/products/effets/canon-confettis-dmx.jpg',
                 isAvailableForRent: true,
                 isAvailableForSale: true,
@@ -878,13 +865,13 @@ const servicesData: Record<string, ServiceData> = {
             },
             {
                 id: 7,
-                name: 'Jet CO2 DMX',
+                name: 'Canon à T-shirts à air comprimé',
                 category: 'co2',
                 image: '/images/products/effets/jet-co2-dmx.jpg',
                 isAvailableForRent: true,
                 isAvailableForSale: false,
                 price: 'À partir de 120€/jour',
-                description: `Système de jet CO2 avec contrôle DMX pour effets spectaculaires instantanés, idéal pour moments forts, climax musicaux ou DJ sets.`,
+                description: `Système de canon à T-shirts à air comprimé pour effets spectaculaires instantanés, idéal pour moments forts, climax musicaux ou DJ sets.`,
                 specs: ['Jet vertical 5-8m', 'Contrôle DMX', 'Bonbonne incluse', 'Technicien requis']
             },
             {
@@ -1248,7 +1235,7 @@ const servicesData: Record<string, ServiceData> = {
             },
             {
                 id: 3,
-                name: 'Station Selfie 360°',
+                name: 'Bornes selfies',
                 category: 'selfie',
                 image: '/images/products/photobooth/station-selfie-360.jpg',
                 isAvailableForRent: true,
@@ -1266,6 +1253,17 @@ const servicesData: Record<string, ServiceData> = {
                 isAvailableForSale: true,
                 price: 'À partir de 120€/jour',
                 description: `Solution d'impression portable pour smartphones, permettant à vos invités d'imprimer directement leurs propres photos via une application dédiée.`,
+                specs: ['Format 10x15cm', 'Connexion WiFi', 'Batterie autonome', 'Application iOS/Android']
+            },
+            {
+                id: 11,
+                name: 'Installation d\'équipement',
+                category: 'impressions',
+                image: '/images/products/photobooth/imprimante-portable.jpg',
+                isAvailableForRent: true,
+                isAvailableForSale: true,
+                price: 'À partir de 120€/jour',
+                description: `Installation d'equipement de sons et limiteurs sonores, lumières et écrans vidéos`,
                 specs: ['Format 10x15cm', 'Connexion WiFi', 'Batterie autonome', 'Application iOS/Android']
             },
             {

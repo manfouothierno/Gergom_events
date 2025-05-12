@@ -63,12 +63,8 @@ export default function ContactInfo() {
                         <h3 className="text-lg font-semibold text-gray-800">Horaires d'ouverture</h3>
                         <ul className="text-gray-600 mt-1 space-y-1">
                             <li className="flex justify-between">
-                                <span>Lundi - Vendredi:</span>
-                                <span>9h00 - 18h00</span>
-                            </li>
-                            <li className="flex justify-between">
-                                <span>Samedi:</span>
-                                <span>9h00 - 12h00</span>
+                                <span>Lundi - Samedi:</span>
+                                <span>8h00 - 19h00</span>
                             </li>
                             <li className="flex justify-between">
                                 <span>Dimanche:</span>

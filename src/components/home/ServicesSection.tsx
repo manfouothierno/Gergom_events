@@ -40,7 +40,7 @@ const services = [
     },
     {
         id: 'structures',
-        title: 'Scènes et structures',
+        title: 'Installation d\'équipements',
         icon: FaAd,
         color: '#FFC0CB',
         colorClass: 'bg-[#FFC0CB]',

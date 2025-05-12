@@ -19,8 +19,8 @@ type MenuItem = {
 const serviceItems: MenuItem[] = [
     { name: 'Sonorisation', href: '/nos-services/sonorisations', color: 'bg-[#FF0000]', hoverClass: 'hover:text-[#FF0000]' },
     { name: 'Éclairage', href: '/nos-services/eclairage', color: 'bg-[#FFA500]', hoverClass: 'hover:text-[#FFA500]' },
-    { name: 'Images & Vidéos', href: '/nos-services/video', color: 'bg-[#FFFF00]', hoverClass: 'hover:text-[#FFFF00]' },
-    { name: 'Scènes', href: '/nos-services/structures', color: 'bg-[#FFC0CB]', hoverClass: 'hover:text-[#FFC0CB]' },
+    { name: 'Ecran & Vidéos', href: '/nos-services/video', color: 'bg-[#FFFF00]', hoverClass: 'hover:text-[#FFFF00]' },
+    // { name: 'Scènes', href: '/nos-services/structures', color: 'bg-[#FFC0CB]', hoverClass: 'hover:text-[#FFC0CB]' },
     { name: 'Effets', href: '/nos-services/effets', color: 'bg-[#800080]', hoverClass: 'hover:text-[#800080]' },
     { name: 'Mobilier', href: '/nos-services/mobilier', color: 'bg-[#0000FF]', hoverClass: 'hover:text-[#0000FF]' },
     { name: 'Photobooth', href: '/nos-services/photobooth', color: 'bg-[#4B0082]', hoverClass: 'hover:text-[#4B0082]' },
@@ -32,8 +32,8 @@ const mainItems: MenuItem[] = [
     { name: 'Accueil', href: '/' },
     // { name: 'Réalisations', href: '/realisations' },
     { name: 'À Propos', href: '/a-propos' },
-    { name: 'Contact', href: '/contact' },
     { name: 'Nos Prestations', href: '/nos-prestations' },
+    { name: 'Contact', href: '/contact' },
 
 ];
 

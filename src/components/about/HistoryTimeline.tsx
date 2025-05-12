@@ -6,9 +6,9 @@ import { motion } from 'framer-motion'
 // Données de la timeline
 const timelineEvents = [
     {
-        year: '2008',
-        title: 'Création de Gergom Events',
-        description: 'Fondation de l\'entreprise par Gérald Gomez à Salon-de-Provence, spécialisée initialement dans la sonorisation d\'événements.'
+        year: '2010',
+        title: 'Création de la société',
+        description: 'Fondation de l\'entreprise par Arnaud Gerdonne à Salon-de-Provence, spécialisée initialement dans la sonorisation d\'événements.'
     },
     {
         year: '2010',
