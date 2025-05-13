@@ -30,7 +30,7 @@ const services = [
     },
     {
         id: 'video',
-        title: 'Images et vidéos',
+        title: 'Ecrans et vidéos',
         icon: FaVideo,
         color: '#FFFF00',
         colorClass: 'bg-[#FFFF00]',
