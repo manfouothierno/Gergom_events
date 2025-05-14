@@ -1,96 +1,34 @@
-// src/components/home/ServicesSection.tsx (version améliorée)
-'use client'
+// src/components/home/ServicesSection.tsx
+'use client'; // This remains a client component
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import {FaMusic, FaLightbulb, FaVideo, FaMagic, FaChair, FaCamera, FaGlassCheers, FaAd} from 'react-icons/fa'
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
-// Données des services
-const services = [
-    {
-        id: 'sonorisations',
-        title: 'Sonorisation',
-        icon: FaMusic,
-        color: '#FF0000',
-        colorClass: 'bg-[#FF0000]',
-        hoverClass: 'group-hover:text-[#FF0000]',
-        image: '/images/services/sonorisations.jpg',
-        description: "Solutions audio professionnelles pour tous types d'événements"
-    },
-    {
-        id: 'eclairage',
-        title: 'Éclairage',
-        icon: FaLightbulb,
-        color: '#FFA500',
-        colorClass: 'bg-[#FFA500]',
-        hoverClass: 'group-hover:text-[#FFA500]',
-        image: '/images/services/eclairage.jpg',
-        description: 'Mise en lumière sur-mesure pour sublimer vos espaces'
-    },
-    {
-        id: 'video',
-        title: 'Ecrans et vidéos',
-        icon: FaVideo,
-        color: '#FFFF00',
-        colorClass: 'bg-[#FFFF00]',
-        hoverClass: 'group-hover:text-[#FFFF00]',
-        image: '/images/services/video.jpg',
-        description: 'Projection, captation et retransmission haute définition'
-    },
-    {
-        id: 'structures',
-        title: 'Installation d\'équipements',
-        icon: FaAd,
-        color: '#FFC0CB',
-        colorClass: 'bg-[#FFC0CB]',
-        hoverClass: 'group-hover:text-[#FFC0CB]',
-        image: '/images/services/structures.jpg',
-        description: 'Équipements professionnels pour tous vos événements'
-    },
-    {
-        id: 'effets',
-        title: 'Effets spéciaux',
-        icon: FaMagic,
-        color: '#800080',
-        colorClass: 'bg-[#800080]',
-        hoverClass: 'group-hover:text-[#800080]',
-        image: '/images/services/effets.jpg',
-        description: 'Effets visuels spectaculaires pour marquer les esprits'
-    },
-    {
-        id: 'mobilier',
-        title: 'Mobilier',
-        icon: FaChair,
-        color: '#0000FF',
-        colorClass: 'bg-[#0000FF]',
-        hoverClass: 'group-hover:text-[#0000FF]',
-        image: '/images/services/mobilier.jpg',
-        description: 'Mobilier design et fonctionnel pour vos espaces événementiels'
-    },
-    {
-        id: 'photobooth',
-        title: 'Photobooth',
-        icon: FaCamera,
-        color: '#4B0082',
-        colorClass: 'bg-[#4B0082]',
-        hoverClass: 'group-hover:text-[#4B0082]',
-        image: '/images/services/photobooth.jpg',
-        description: 'Créez des souvenirs mémorables pour vos invités'
-    },
-    {
-        id: 'equipements',
-        title: 'Équipements festifs',
-        icon: FaGlassCheers,
-        color: '#87CEEB',
-        colorClass: 'bg-[#87CEEB]',
-        hoverClass: 'group-hover:text-[#87CEEB]',
-        image: '/images/services/equipements.jpg',
-        description: 'Animations et équipements pour dynamiser vos événements'
+// Import *all* potentially used icons. You'll need to ensure the string names
+// in your Sanity data ('iconName' field) match the exported names from react-icons/fa
+import * as FaIcons from 'react-icons/fa';
+
+// Import the type definition for the data the component receives
+import { SanityServiceData } from '@/types/services';
+
+// Define props interface
+interface ServicesSectionProps {
+    services: SanityServiceData[];
+}
+
+// Helper to get icon component by name
+const getIconComponent = (name?: string) => {
+    if (!name || !FaIcons[name as keyof typeof FaIcons]) {
+        // Return a default icon or null if name is invalid/not found
+        console.warn(`Icon not found: ${name}`);
+        return FaIcons.FaQuestionCircle; // Example fallback icon
     }
-]
+    return FaIcons[name as keyof typeof FaIcons];
+};
 
-// Animation pour l'apparition des éléments au scroll
+
+// Animation variants (kept from your original code)
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -112,7 +50,10 @@ const itemVariants = {
     }
 }
 
-const ServicesSection = () => {
+const ServicesSection = ({ services }: ServicesSectionProps) => { // Accept services as a prop
+
+    console.log('ServicesSection', services);
+
     return (
         <section className="bg-gradient-to-b from-gray-100 to-white py-20">
             <div className="container mx-auto px-4">
@@ -145,73 +86,93 @@ const ServicesSection = () => {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                 >
-                    {services.map((service) => (
-                        <motion.div
-                            key={service.id}
-                            variants={itemVariants}
-                        >
-                            <Link href={`/nos-services/${service.id}`}>
-                                <div className="group relative overflow-hidden rounded-lg bg-white shadow-lg hover:shadow-xl cursor-pointer h-64 transition-all duration-300 transform hover:-translate-y-1">
-                                    {/* Image en N&B qui se colorise au survol */}
-                                    <div className="absolute inset-0 transition-all duration-500 transform">
-                                        {/* Image N&B */}
-                                        <div className="absolute inset-0 grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-110">
-                                            <Image
-                                                src={service.image}
-                                                alt={service.title}
-                                                fill
-                                                className="object-cover"
-                                            />
+                    {/* Map over the services prop */}
+                    {services.map((service) => {
+                        const ServiceIcon = getIconComponent(service.iconName); // Get the icon component
+                        const hexColor = service.color?.hex || '#000000'; // Use hex color from Sanity data, fallback to black
+
+                        return (
+                            <motion.div
+                                key={service._id} // Use Sanity's _id for a stable key
+                                variants={itemVariants}
+                            >
+                                {/* Use service.slug for the URL */}
+                                <Link href={`/nos-services/${service.slug}`}>
+                                    <div className="group relative overflow-hidden rounded-lg bg-white shadow-lg hover:shadow-xl cursor-pointer h-64 transition-all duration-300 transform hover:-translate-y-1">
+                                        {/* Image section */}
+                                        <div className="absolute inset-0 transition-all duration-500 transform">
+                                            {/* Use bannerImageUrl from Sanity */}
+                                            {service.bannerImage && (
+                                                <div className="absolute inset-0 grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-110">
+                                                    <Image
+                                                        src={service.bannerImage}
+                                                        alt={service.name} // Use service name for alt text
+                                                        fill
+                                                        className="object-cover"
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw" // Add appropriate sizes
+                                                    />
+                                                </div>
+                                            )}
+
+
+                                            {/* Overlay dégradé */}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300"></div>
                                         </div>
 
-                                        {/* Overlay dégradé */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300"></div>
+                                        {/* Content section */}
+                                        <div className="absolute inset-0 p-6 flex flex-col justify-end z-10">
+                                            <div className="flex items-center mb-3">
+                                                {/* Icône with dynamic background color from Sanity data */}
+                                                {ServiceIcon && (
+                                                    <motion.div
+                                                        // Use inline style for dynamic background color
+                                                        style={{ backgroundColor: hexColor }}
+                                                        className={`w-10 h-10 rounded-full flex items-center justify-center mr-3 shadow-md`}
+                                                        whileHover={{ rotate: 360 }}
+                                                        transition={{ duration: 0.5 }}
+                                                    >
+                                                        {/* Render the fetched icon component */}
+                                                        <ServiceIcon className="w-5 h-5 text-white" />
+                                                    </motion.div>
+                                                )}
+
+                                                {/* Service title */}
+                                                {/* Use inline style for dynamic hover text color */}
+                                                <h3
+                                                    className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-current"
+                                                    style={{ '--group-hover-text-color': hexColor } as React.CSSProperties} // Use CSS variable for hover color
+                                                >
+                                                    {service.name} {/* Use service.name for title */}
+                                                </h3>
+                                            </div>
+
+                                            {/* Description (use metaDescription from Sanity) */}
+                                            {service.metaDescription && (
+                                                <p className="text-gray-200 text-sm">
+                                                    {service.metaDescription}
+                                                </p>
+                                            )}
+
+
+                                            {/* "Learn More" button/link animation */}
+                                            {/* Simplified approach using a visible element instead of overflow hide/motion */}
+                                            <div className="mt-4">
+                                                <div className="flex items-center text-sm font-medium text-white transition-all duration-300 transform translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                                                    En savoir plus
+                                                    <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    {/* Contenu de la carte */}
-                                    <div className="absolute inset-0 p-6 flex flex-col justify-end z-10">
-                                        <div className="flex items-center mb-3">
-                                            {/* Icône avec animation */}
-                                            <motion.div
-                                                className={`w-10 h-10 rounded-full ${service.colorClass} flex items-center justify-center mr-3 shadow-md`}
-                                                whileHover={{ rotate: 360 }}
-                                                transition={{ duration: 0.5 }}
-                                            >
-                                                <service.icon className="w-5 h-5 text-white" />
-                                            </motion.div>
-
-                                            {/* Titre du service */}
-                                            <h3 className="text-xl font-bold text-white transition-colors duration-300">
-                                                {service.title}
-                                            </h3>
-                                        </div>
-
-                                        {/* Description */}
-                                        <p className="text-gray-200 text-sm">
-                                            {service.description}
-                                        </p>
-
-                                        {/* Bouton "En savoir plus" qui apparaît au survol */}
-                                        <div className="mt-4 overflow-hidden h-8">
-                                            <motion.div
-                                                initial={{ y: 30, opacity: 0 }}
-                                                whileHover={{ y: 0, opacity: 1 }}
-                                                className="flex items-center text-sm font-medium text-white"
-                                            >
-                                                En savoir plus
-                                                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                                </svg>
-                                            </motion.div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </motion.div>
-                    ))}
+                                </Link>
+                            </motion.div>
+                        );
+                    })}
                 </motion.div>
 
-                {/* Bouton "Tous nos services" */}
+                {/* "Discover All Services" button (kept from original code) */}
                 <motion.div
                     className="text-center mt-12"
                     initial={{ opacity: 0 }}
@@ -231,7 +192,7 @@ const ServicesSection = () => {
                 </motion.div>
             </div>
         </section>
-    )
+    );
 }
 
-export default ServicesSection
+export default ServicesSection;
