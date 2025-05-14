@@ -23,7 +23,7 @@ const mainItems: MainMenuItem[] = [
     { name: 'Accueil', href: '/' },
     // { name: 'Réalisations', href: '/realisations' }, // Example comment out if not used
     { name: 'À Propos', href: '/a-propos' },
-    { name: 'Nos Services', href: '/nos-services' }, // Link to a general services list page maybe?
+    { name: 'Nos Services', href: '/nos-services/sonorisation' }, // Link to a general services list page maybe?
     { name: 'Contact', href: '/contact' },
 ];
 

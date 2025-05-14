@@ -8,23 +8,33 @@ import { FaHandshake, FaLightbulb, FaTools, FaUsers } from 'react-icons/fa'
 const values = [
     {
         icon: FaHandshake,
-        title: 'Excellence',
-        description: `Nous nous engageons à fournir un service et des équipements de la plus haute qualité, en recherchant constamment l'amélioration continue.`
+        title: 'Respect',
+        description: ` Chaque projet est abordé avec considération, assurant une écoute attentive des besoins du client.`
     },
     {
         icon: FaLightbulb,
-        title: 'Innovation',
-        description: 'Nous restons à la pointe de la technologie et des tendances événementielles pour offrir des solutions créatives et originales.'
+        title: 'Solidarité',
+        description: 'L\'équipe travaille en synergie, garantissant une coordination optimale pour chaque événement.'
     },
     {
         icon: FaTools,
-        title: 'Fiabilité',
-        description: 'La sécurité et la performance de nos installations sont notre priorité absolue, garantissant la sérénité de nos clients.'
+        title: 'Combativité',
+        description: 'Face aux défis, Gergom Events fait preuve de détermination pour offrir des solutions adaptées.'
     },
     {
         icon: FaUsers,
-        title: 'Proximité',
-        description: `Nous privilégions une relation personnalisée avec chaque client, basée sur l'écoute et la réactivité à chaque étape du projet.`
+        title: 'Courage',
+        description: `L'entreprise n'hésite pas à innover et à sortir des sentiers battus pour surprendre et satisfaire ses clients.`
+    },
+    {
+        icon: FaUsers,
+        title: 'Engagement',
+        description: `Chaque membre de l'équipe s'investit pleinement, assurant la réussite de l'événement.`
+    },
+    {
+        icon: FaUsers,
+        title: 'Esprit d\'équipe',
+        description: ` La collaboration est au cœur de leur approche, favorisant un environnement de travail harmonieux.`
     }
 ]
 

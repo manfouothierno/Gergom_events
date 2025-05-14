@@ -12,34 +12,44 @@ const timelineEvents = [
     },
     {
         year: '2010',
-        title: 'Développement du pôle éclairage',
-        description: 'Extension de notre offre avec l\'acquisition des premiers systèmes d\'éclairage professionnels pour répondre à une demande croissante.'
+        title: 'Signature du 1er contrat avec le RCT (Rugby Club Toulonnais)',
+        description: ''
     },
     {
-        year: '2013',
-        title: 'Premiers grands événements régionaux',
-        description: 'Reconnaissance de notre expertise avec la prise en charge d\'événements majeurs pour les collectivités locales et entreprises de la région.'
+        year: '2017',
+        title: 'Début du partenariat avec le PAUC (Pays d’Aix Université Club)',
+        description: ''
     },
     {
-        year: '2015',
-        title: 'Investissement en structures scéniques',
-        description: 'Élargissement de notre parc matériel avec l\'acquisition de scènes et structures, permettant d\'offrir des solutions complètes.'
+        year: '2017',
+        title: 'Lancement des After Work, une nouvelle offre événementielle',
+        description: ''
     },
     {
         year: '2018',
-        title: 'Nouveau siège social',
-        description: 'Installation dans nos locaux actuels avec un entrepôt modernisé et un showroom pour présenter notre matériel aux clients.'
+        title: 'Lancement de la branche mobilier, élargissement de l’offre',
+        description: ''
+    },
+    {
+        year: '2018',
+        title: 'Consolidation de l’activité — on garde tel quel',
+        description: ''
     },
     {
         year: '2020',
-        title: 'Résilience et adaptation',
-        description: 'Développement de nouvelles solutions pendant la crise sanitaire : captation vidéo, streaming et événements hybrides.'
+        title: 'Stabilisation des services — on garde tel quel',
+        description: ''
     },
     {
-        year: '2023',
-        title: 'Expansion et innovation',
-        description: 'Investissement dans les dernières technologies audiovisuelles et renforcement de notre présence sur toute la région PACA.'
-    }
+        year: '2022',
+        title: 'Début des installations fixes en vidéo et son chez les partenaires',
+        description: ''
+    },
+    {
+        year: '2024',
+        title: 'Reconduction du contrat avec le RCT',
+        description: ''
+    },
 ]
 
 export default function HistoryTimeline() {
