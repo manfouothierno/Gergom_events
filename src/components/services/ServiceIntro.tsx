@@ -81,7 +81,7 @@ const ServiceIntro = ({ description, features, applications, color }: ServiceInt
                             const featureKey = feature._key || feature.title; // Use _key if available, fallback to title
 
                             // Ensure getIconByName works or replace its usage
-                            const IconComponent = getIconByName(feature.iconName || undefined); // Safely pass name string
+                            const IconComponent = getIconByName(feature.iconName); // Safely pass name string
 
                             return (
                                 // Use the generated key

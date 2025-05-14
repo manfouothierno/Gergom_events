@@ -22,6 +22,6 @@ const iconMap = {
     FaRegLightbulb
 };
 
-export const getIconByName = (name: string) => {
+export const getIconByName = (name: string | undefined) => {
     return iconMap[name] || FaMusic; // Retourne FaMusic par défaut si l'icône n'est pas trouvée
 }
