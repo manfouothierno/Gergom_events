@@ -1,66 +1,53 @@
-// src/components/home/CtaSection.tsx - Adapted for Sanity data
-'use client'; // Remains client component for Framer Motion
+// src/components/home/CtaSection.tsx - Improved AnimatedStat alignment
+'use client';
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion'; // useScroll, useTransform for section parallax
-// No need for specific Fa icons here anymore, they are in AnimatedStat and getIconComponentByName
-// Import the updated AnimatedStat component
+import { motion, useScroll, useTransform } from 'framer-motion';
 import AnimatedStat from './AnimatedStat';
-// Import data types
-
-// Import Portable Text Renderer if needed for CTA text
 import { PortableText } from '@portabletext/react';
-import {CtaSectionData} from "@/types/homepage";
-import {getIconComponentByName} from "@/components/home/Counter"; // If schema uses blockContent
+import { CtaSectionData } from "@/types/homepage";
+import { getIconComponentByName } from "@/components/home/Counter";
 
-
-// Assuming getIconComponentByName is defined and imports react-icons/fa
-
-
-// Define props interface for CtaSection
 interface CtaSectionProps {
     data: CtaSectionData;
 }
 
-const CtaSection = ({ data }: CtaSectionProps) => { // Accept data as prop
+const CtaSection = ({ data }: CtaSectionProps) => {
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start end", "end start"]
     });
 
-    // Effet de parallaxe (Apply to background container using useScroll targeting containerRef)
     const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
     const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
 
-    // Access stats array from data, provide empty array fallback
     const stats = data.stats || [];
 
-    // Portable Text components for CTA Text if schema uses blockContent
     const ctaTextPortableTextComponents = {
         block: {
             normal: ({children}: { children: React.ReactNode }) => <p>{children}</p>,
-            // add others as needed
         }
-        // Add marks, types, etc. if your ctaText uses them
     };
 
+    // Calculate responsive grid columns based on number of stats
+    const getGridColumns = () => {
+        if (stats.length <= 2) return 'grid-cols-2';
+        if (stats.length == 3) return 'grid-cols-3';
+        if (stats.length <= 4) return 'grid-cols-2 md:grid-cols-4';
+        return 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6';
+    };
 
     return (
-        // Attach ref for parallax effect calculation
         <section ref={containerRef} className="relative py-24 md:py-32 overflow-hidden">
-            {/* Fond avec effet parallaxe */}
+            {/* Background with parallax effect */}
             <motion.div
-                // Apply parallax styles to this background container
                 className="absolute inset-0 z-0"
                 style={{ y, opacity }}
             >
-                {/* Overlay coloré (hardcoded) */}
                 <div className="absolute inset-0 bg-gradient-to-br from-red-900/80 via-red-800/80 to-black/90 z-10"></div>
-
-                {/* Image de fond from Sanity */}
                 {data.backgroundImage && (
                     <Image
                         src={data.backgroundImage}
@@ -70,65 +57,58 @@ const CtaSection = ({ data }: CtaSectionProps) => { // Accept data as prop
                         priority
                     />
                 )}
-
             </motion.div>
 
             {/* Content */}
             <div className="container mx-auto px-4 relative z-10">
-                {/* Statistiques - Only render grid if there are stats */}
+                {/* Stats section */}
                 {stats.length > 0 && (
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-                        {/* Optional stats title above grid */}
+                    <div className={`mb-16 ${stats.length > 4 ? 'max-w-6xl mx-auto' : ''}`}>
                         {data.statsTitle && (
-                            <div className="col-span-full text-center mb-8">
-                                <h2 className="text-3xl font-bold text-white">{data.statsTitle}</h2>
-                            </div>
+                            <h2 className="text-3xl font-bold text-white text-center mb-8">
+                                {data.statsTitle}
+                            </h2>
                         )}
 
-                        {/* Map over stats from Sanity data */}
-                        {stats.map((stat, index) => (
-                            // Pass data specific to AnimatedStat
-                            // No need for Framer Motion animation directly here, AnimatedStat component handles its own scroll animation logic
-                            // We pass the necessary data from the CtaStatItem
-                            <AnimatedStat
-                                key={stat._key || index} // Use _key from Sanity for unique key
-                                numericValue={stat.numericValue} // Pass the numeric value
-                                displayValue={stat.displayValue} // Pass the string value to display
-                                label={stat.label}
-                                iconName={stat.iconName} // Pass the icon name string
-                                // If AnimatedStat accepted duration as prop, pass it here too
-                            />
-                        ))}
+                        <div className={`grid ${getGridColumns()} gap-6  md:gap-8`}>
+                            {stats.map((stat, index) => (
+                                <AnimatedStat
+                                    key={stat._key || index}
+                                    numericValue={stat.numericValue}
+                                    displayValue={stat.displayValue}
+                                    label={stat.label}
+                                    iconName={stat.iconName}
+                                    className="mx-auto" // Ensures each stat is centered in its grid cell
+                                />
+                            ))}
+                        </div>
                     </div>
                 )}
 
-
-                {/* Appel à l'action - Only render if CTA title or button link text exist */}
+                {/* CTA section */}
                 {(data.ctaTitle || data.ctaButtonText) && (
                     <motion.div
                         className="text-center max-w-3xl mx-auto"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }} // Animation for the whole CTA block
+                        transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        {data.ctaTitle && ( // Use CTA title from Sanity
+                        {data.ctaTitle && (
                             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
                                 {data.ctaTitle}
                             </h2>
                         )}
-                        {data.ctaText && ( // Use CTA text from Sanity (Portable Text)
+                        {data.ctaText && (
                             <div className="text-xl text-gray-200 mb-8">
-                                {/* If ctaText schema field is 'blockContent', use PortableText renderer */}
                                 {typeof data.ctaText === 'string' ? (
-                                    <p>{data.ctaText}</p> // Render as paragraph if it's just a string
+                                    <p>{data.ctaText}</p>
                                 ) : (
                                     <PortableText value={data.ctaText} components={ctaTextPortableTextComponents} />
                                 )}
                             </div>
                         )}
 
-                        {/* CTA Button - Only render if text and link exist */}
                         {(data.ctaButtonText && data.ctaButtonHref) && (
                             <Link href={data.ctaButtonHref}>
                                 <motion.button
@@ -136,23 +116,16 @@ const CtaSection = ({ data }: CtaSectionProps) => { // Accept data as prop
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
-                                    {/* Button text from Sanity */}
                                     {data.ctaButtonText}
-                                    {/* Button icon from Sanity (or keep hardcoded if only one type is ever used) */}
-                                    {/* If schema has ctaButtonIconName field, look up and render icon component */}
-                                    {data.ctaButtonIconName && React.createElement(getIconComponentByName(data.ctaButtonIconName))} {/* Map icon name to component */}
-
+                                    {data.ctaButtonIconName && React.createElement(getIconComponentByName(data.ctaButtonIconName))}
                                 </motion.button>
                             </Link>
                         )}
                     </motion.div>
                 )}
-
-
             </div>
 
-            {/* Wavy decorative element at the bottom (hardcoded shape, could make fill dynamic) */}
-            {/* Set container text color to make fill inherit */}
+            {/* Wavy decorative element */}
             <div className="absolute bottom-0 left-0 right-0 text-white">
                 <svg
                     viewBox="0 0 1440 120"
@@ -172,5 +145,4 @@ const CtaSection = ({ data }: CtaSectionProps) => { // Accept data as prop
     );
 };
 
-// Re-export the CtaSection component
 export default CtaSection;

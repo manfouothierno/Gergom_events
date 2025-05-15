@@ -129,7 +129,7 @@ const HeroSection = ({ slides }: HeroSectionProps) => {
                             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
                                 {/* Replace with dynamic buttons if fetched from Sanity */}
                                 <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.8 }}> {/* Added a simple animation for the container */}
-                                    <Link href="/nos-services">
+                                    <div >
                                         <motion.button
                                             className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors shadow-lg" // Using example primary color
                                             whileHover={{ scale: 1.05 }}
@@ -137,7 +137,7 @@ const HeroSection = ({ slides }: HeroSectionProps) => {
                                         >
                                             Découvrir nos services
                                         </motion.button>
-                                    </Link>
+                                    </div>
                                 </motion.div>
                                 <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1 }}> {/* Added a simple animation for the container with a slight delay */}
                                     <Link href="/contact">

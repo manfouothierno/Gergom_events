@@ -73,7 +73,7 @@ const Header = ({ serviceMenuItems }: HeaderProps) => {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="flex-shrink-0 bg-gray-800 rounded-full p-1 z-50">
+                    <Link href="/" className="flex-shrink-0  z-50">
                         <Image
                             src="/logo_gergom.avif"
                             alt="Gergom Events"

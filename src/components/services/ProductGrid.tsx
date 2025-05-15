@@ -84,20 +84,19 @@ const ProductGrid = ({ products }: ProductGridProps) => {
                         {/* Boutons d'action */}
                         <div className="flex justify-between">
                             <Link
-                                href={`/demande/devis?product=${product.id}`}
+                                href={`/contact}`}
                                 className="px-3 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition-colors flex items-center"
                             >
                                 <FaShoppingCart className="mr-1" />
                                 Demander un devis
                             </Link>
 
-                            <Link
-                                href={`/nos-services/sonorisations/${product.id}`}
+                            <div
                                 className="px-3 py-1.5 border border-gray-300 text-gray-700 rounded text-sm hover:bg-gray-50 transition-colors flex items-center"
                             >
                                 <FaInfoCircle className="mr-1" />
                                 Détails
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </motion.div>
