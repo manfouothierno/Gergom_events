@@ -38,7 +38,7 @@ export  default async function Home() {
                 <HeroSection slides={heroSlidesData} />
             )}
             {servicesData && servicesData.length > 0 && (
-                <ServicesSection data={servicesData} />
+                <ServicesSection services={servicesData} />
             )}
             {/* About Section (renders only if data is valid) */}
             {aboutSectionData && ( // Pass data if fetched successfully
