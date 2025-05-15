@@ -19,7 +19,7 @@ export default function AboutPage() {
     return (
         <main className="bg-white">
             {/* Bannière d'introduction avec parallaxe */}
-            <AboutHero />
+            {/*<AboutHero />*/}
 
             {/* Histoire et valeurs */}
             <section className="py-16 md:py-24">

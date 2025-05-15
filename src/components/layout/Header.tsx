@@ -1,44 +1,49 @@
-// src/components/layout/Header.tsx - Version adaptée à Sanity
-
-'use client'; // This remains a client component because of state/effects/framer-motion
+// src/components/layout/Header.tsx - With active route highlighting
+'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
 
 // Import the type for the service menu items from Sanity
 import { HeaderServiceMenuItem } from '@/types/services';
 
-// Types for the main menu items (can remain hardcoded if they don't come from Sanity)
+// Types for the main menu items
 type MainMenuItem = {
     name: string;
     href: string;
 };
 
-
-// Pages principales (can remain hardcoded or be fetched separately if they change)
 const mainItems: MainMenuItem[] = [
     { name: 'Accueil', href: '/' },
-    // { name: 'Réalisations', href: '/realisations' }, // Example comment out if not used
-    { name: 'À Propos', href: '/a-propos' },
-    { name: 'Nos Services', href: '/nos-services/sonorisation' }, // Link to a general services list page maybe?
     { name: 'Contact', href: '/contact' },
 ];
 
-// Define props for the Header component, including the Sanity service menu items
 interface HeaderProps {
-    serviceMenuItems: HeaderServiceMenuItem[]; // Expect array of Sanity items
+    serviceMenuItems: HeaderServiceMenuItem[];
 }
 
-const Header = ({ serviceMenuItems }: HeaderProps) => { // Accept as prop
+const Header = ({ serviceMenuItems }: HeaderProps) => {
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    // Removed isServicesExpanded as it seems unused or could be handled with CSS/flex-wrap
 
+    // Check if a route is active
+    const isActiveRoute = (href: string) => {
+        if (href === '/') {
+            return pathname === href;
+        }
+        return pathname.startsWith(href);
+    };
 
-    // Effect to detect scroll position
+    // Check if a service route is active
+    const isActiveService = (slug: string) => {
+        return pathname === `/nos-services/${slug}`;
+    };
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
@@ -48,7 +53,6 @@ const Header = ({ serviceMenuItems }: HeaderProps) => { // Accept as prop
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Prevent body scroll when mobile menu is open
     useEffect(() => {
         if (isMobileMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -56,24 +60,22 @@ const Header = ({ serviceMenuItems }: HeaderProps) => { // Accept as prop
             document.body.style.overflow = '';
         }
         return () => {
-            document.body.style.overflow = ''; // Clean up on unmount
+            document.body.style.overflow = '';
         };
     }, [isMobileMenuOpen]);
-
 
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                isScrolled ? 'bg-white shadow-sm py-2' : 'bg-white/95 backdrop-blur-sm py-3' // backdrop-blur requires modern browser
+                isScrolled ? 'bg-white shadow-sm py-2' : 'bg-white/95 backdrop-blur-sm py-3'
             }`}
         >
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="flex-shrink-0 z-50"> {/* Increased z-index for clickability on mobile overlay */}
-                        {/* Adjust width/height logic if needed */}
+                    <Link href="/" className="flex-shrink-0 bg-gray-800 rounded-full p-1 z-50">
                         <Image
-                            src="/images/logo.svg"
+                            src="/logo_gergom.avif"
                             alt="Gergom Events"
                             width={isScrolled ? 110 : 130}
                             height={isScrolled ? 35 : 40}
@@ -82,41 +84,49 @@ const Header = ({ serviceMenuItems }: HeaderProps) => { // Accept as prop
                         />
                     </Link>
 
-                    {/* Navigation principale - Desktop */}
+                    {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center space-x-7 mx-4">
-                        {/* Main items remain hardcoded for now */}
                         {mainItems.map((item) => (
                             <Link
-                                key={item.name} // Using name as key (assuming unique), or better add an 'id' field
+                                key={item.name}
                                 href={item.href}
-                                className="relative text-gray-800 hover:text-red-600 transition-colors font-medium px-1 py-2 group" // Example hover:text-primary, assuming primary is red-600
+                                className={`relative font-medium px-1 py-2 group transition-colors ${
+                                    isActiveRoute(item.href)
+                                        ? 'text-red-600'
+                                        : 'text-gray-800 hover:text-red-600'
+                                }`}
                             >
                                 {item.name}
-                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-red-600 group-hover:w-full transition-all duration-300"></span> {/* Example primary color */}
+                                <span
+                                    className={`absolute bottom-0 left-0 h-0.5 bg-red-600 transition-all duration-300 ${
+                                        isActiveRoute(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                                    }`}
+                                ></span>
                             </Link>
                         ))}
                     </nav>
 
-                    {/* Boutons de contact - Desktop */}
+                    {/* Desktop Contact Buttons */}
                     <div className="hidden lg:flex items-center space-x-4">
-                        <a href="tel:0619537090"
-                           className="flex items-center text-red-600 hover:text-red-700 transition-colors" // Example text-primary
+                        <a
+                            href="tel:0619537090"
+                            className="flex items-center text-red-600 hover:text-red-700 transition-colors"
                         >
                             <FaPhone className="mr-2" />
                             <span className="font-medium">06 19 53 70 90</span>
                         </a>
                         <Link
                             href="/contact"
-                            className="px-4 py-2 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition-colors font-medium shadow-sm flex items-center" // Example bg-primary
+                            className="px-4 py-2 bg-red-600 text-white rounded text-sm hover:bg-red-700 transition-colors font-medium shadow-sm flex items-center"
                         >
                             <FaEnvelope className="mr-2" />
                             Demander un devis
                         </Link>
                     </div>
 
-                    {/* Bouton menu mobile */}
+                    {/* Mobile Menu Button */}
                     <button
-                        className="lg:hidden flex items-center justify-center w-10 h-10 relative z-50" // Higher z-index
+                        className="lg:hidden flex items-center justify-center w-10 h-10 relative z-50"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     >
@@ -128,36 +138,35 @@ const Header = ({ serviceMenuItems }: HeaderProps) => { // Accept as prop
                     </button>
                 </div>
 
-                {/* Services menu - Desktop (adjusted for dynamic content & inline styles) */}
+                {/* Desktop Services Menu */}
                 <div className="hidden lg:block mt-1">
                     <div
                         className={`relative flex items-center justify-center transition-all duration-300 ${
-                            isScrolled ? 'h-8 overflow-hidden' : 'h-10' // Hides or shows based on scroll
+                            isScrolled ? 'h-8 overflow-hidden' : 'h-10'
                         }`}
                     >
-                        {/* Removed isServicesExpanded state/logic, using simple flex/wrap */}
-                        <div className="flex items-center space-x-1 px-4 py-1 rounded-full bg-gray-50 mx-auto overflow-hidden whitespace-nowrap"> {/* Keep overflow/wrap handled by scroll state */}
+                        <div className="flex items-center space-x-1 px-4 py-1 rounded-full bg-gray-50 mx-auto overflow-hidden whitespace-nowrap">
                             {serviceMenuItems.map((item) => {
-                                // Safely get the hex color
-                                const itemHexColor = item.color?.hex || '#000000'; // Default or fallback color
+                                const itemHexColor = item.color?.hex || '#000000';
 
                                 return (
                                     <Link
-                                        key={item.slug} // Using slug as key (assuming unique slugs)
-                                        href={`/nos-services/${item.slug}`} // Build URL from slug
-                                        className="relative group text-sm text-gray-700 font-medium px-2 py-1 flex items-center transition-colors duration-200 rounded-full hover:bg-gray-100"
-                                        // Use inline style for dynamic hover text color
-                                        // This requires setting text color explicitly OR using CSS variables/complex Tailwind JIT setup
-                                        // Simple example: set the normal text color based on group-hover color (less flexible)
-                                        style={{ '--group-hover-text-color': itemHexColor } as React.CSSProperties} // Use CSS variable name for clarity
-
+                                        key={item.slug}
+                                        href={`/nos-services/${item.slug}`}
+                                        className={`relative group text-sm font-medium px-2 py-1 flex items-center transition-colors duration-200 rounded-full ${
+                                            isActiveService(item.slug)
+                                                ? 'bg-gray-100 font-semibold'
+                                                : 'hover:bg-gray-100'
+                                        }`}
+                                        style={{ '--group-hover-text-color': itemHexColor } as React.CSSProperties}
                                     >
-                                        {/* Use inline style for the colored circle background */}
                                         <span
                                             className="w-2 h-2 rounded-full mr-1.5 flex-shrink-0"
-                                            style={{ backgroundColor: itemHexColor }} // Apply dynamic hex color
+                                            style={{ backgroundColor: itemHexColor }}
                                         ></span>
-                                        <span>{item.name}</span> {/* Use service name */}
+                                        <span className={isActiveService(item.slug) ? 'text-red-600' : 'text-gray-700'}>
+                                            {item.name}
+                                        </span>
                                     </Link>
                                 );
                             })}
@@ -166,7 +175,7 @@ const Header = ({ serviceMenuItems }: HeaderProps) => { // Accept as prop
                 </div>
             </div>
 
-            {/* Menu mobile overlay */}
+            {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
@@ -177,18 +186,30 @@ const Header = ({ serviceMenuItems }: HeaderProps) => { // Accept as prop
                         transition={{ type: 'tween', duration: 0.25 }}
                     >
                         <div className="container mx-auto px-6 pt-20 pb-6 h-full overflow-y-auto">
-                            {/* Menu principal */}
+                            {/* Main Menu */}
                             <nav className="border-b border-gray-100 pb-4 mb-4">
-                                <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wider">Menu principal</h3>
+                                <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wider">
+                                    Menu principal
+                                </h3>
                                 <ul className="space-y-3">
                                     {mainItems.map((item) => (
                                         <li key={item.name}>
                                             <Link
                                                 href={item.href}
-                                                className="flex items-center py-2 text-lg font-medium text-gray-800 hover:text-red-600 transition-colors" // Example hover
+                                                className={`flex items-center py-2 text-lg font-medium transition-colors ${
+                                                    isActiveRoute(item.href)
+                                                        ? 'text-red-600'
+                                                        : 'text-gray-800 hover:text-red-600'
+                                                }`}
                                                 onClick={() => setIsMobileMenuOpen(false)}
                                             >
-                                                <span className="border-l-2 border-red-600 h-6 mr-3"></span> {/* Example border color */}
+                                                <span
+                                                    className={`border-l-2 h-6 mr-3 ${
+                                                        isActiveRoute(item.href)
+                                                            ? 'border-red-600'
+                                                            : 'border-transparent'
+                                                    }`}
+                                                ></span>
                                                 {item.name}
                                             </Link>
                                         </li>
@@ -196,48 +217,51 @@ const Header = ({ serviceMenuItems }: HeaderProps) => { // Accept as prop
                                 </ul>
                             </nav>
 
-                            {/* Services - Mobile menu */}
+                            {/* Services Menu */}
                             <div className="mb-8">
-                                <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wider">Nos services</h3>
+                                <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wider">
+                                    Nos services
+                                </h3>
                                 <div className="grid grid-cols-2 gap-x-4 gap-y-3">
                                     {serviceMenuItems.map((item) => {
-                                        // Safely get the hex color
-                                        const itemHexColor = item.color?.hex || '#000000'; // Default color
+                                        const itemHexColor = item.color?.hex || '#000000';
 
                                         return (
                                             <Link
-                                                key={item.slug} // Use slug as key
-                                                href={`/nos-services/${item.slug}`} // Build URL
-                                                className="flex items-center py-2 text-gray-700 hover:text-red-600 transition-colors" // Example hover color
+                                                key={item.slug}
+                                                href={`/nos-services/${item.slug}`}
+                                                className={`flex items-center py-2 transition-colors ${
+                                                    isActiveService(item.slug)
+                                                        ? 'text-red-600 font-semibold'
+                                                        : 'text-gray-700 hover:text-red-600'
+                                                }`}
                                                 onClick={() => setIsMobileMenuOpen(false)}
                                             >
-                                                {/* Use inline style for the colored circle background */}
                                                 <span
-                                                    className={`w-2 h-2 rounded-full mr-2`}
-                                                    style={{ backgroundColor: itemHexColor }} // Apply dynamic hex color
+                                                    className="w-2 h-2 rounded-full mr-2"
+                                                    style={{ backgroundColor: itemHexColor }}
                                                 ></span>
-                                                <span className="text-sm font-medium">{item.name}</span> {/* Use service name */}
+                                                <span className="text-sm font-medium">{item.name}</span>
                                             </Link>
                                         );
                                     })}
                                 </div>
                             </div>
 
-                            {/* Contact buttons - Mobile menu */}
+                            {/* Contact Buttons */}
                             <div className="border-t border-gray-100 pt-6">
-                                {/* Phone link */}
-                                <a href="tel:0619537090"
-                                   className="flex items-center mb-4 text-red-600 font-semibold" // Example text-primary
+                                <a
+                                    href="tel:0619537090"
+                                    className="flex items-center mb-4 text-red-600 font-semibold"
                                 >
                                     <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center mr-3">
                                         <FaPhone />
                                     </div>
                                     <span>06 19 53 70 90</span>
                                 </a>
-                                {/* Contact button */}
                                 <Link
                                     href="/contact"
-                                    className="flex items-center bg-red-600 text-white rounded-lg py-3 px-4 justify-center font-medium shadow-sm hover:bg-red-700 transition-colors" // Example bg-primary
+                                    className="flex items-center bg-red-600 text-white rounded-lg py-3 px-4 justify-center font-medium shadow-sm hover:bg-red-700 transition-colors"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     <FaEnvelope className="mr-2" />

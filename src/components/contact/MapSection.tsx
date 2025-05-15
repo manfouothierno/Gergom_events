@@ -1,56 +1,73 @@
-// src/components/contact/MapSection.tsx
-'use client'
+// src/components/contact/MapSection.tsx - Adapted for Sanity data
+'use client'; // Client component for the map iframe
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion'; // For animation if used
 
-export default function MapSection() {
-    const [isMapLoaded, setIsMapLoaded] = useState(false)
+
+// Import type for map configuration data
+import { MapConfigData } from '@/types/contactPage';
+
+
+// Define props to accept map data and optional title
+interface MapSectionProps {
+    title?: string | null; // Optional section title
+    mapConfig?: MapConfigData | null; // Map configuration object or null
+}
+
+
+const MapSection = ({ title, mapConfig }: MapSectionProps) => { // Accept props
+    // Get the map embed URL safely, fallback to null
+    const mapEmbedUrl = mapConfig?.mapEmbedUrl || null;
+
+    // Render nothing if no map data (specifically no embed URL) is provided
+    if (!mapEmbedUrl) {
+        // Render the section title even if no map URL? Or nothing? Let's render title if exists.
+        if (title) {
+            return (
+                <section className="py-16">
+                    <div className="container mx-auto px-4 text-center">
+                        <h2 className="text-3xl font-bold mb-6 text-gray-800">{title}</h2>
+                        <p className="text-gray-600">Carte non disponible actuellement.</p>
+                    </div>
+                </section>
+            );
+        }
+        return null; // Render nothing if no title and no map
+    }
+
 
     return (
-        <section className="py-10">
+        <section className="py-16"> {/* Keep padding and background (white) */}
             <div className="container mx-auto px-4">
+                {title && ( // Render section title if provided
+                    <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">{title}</h2>
+                )}
+
+                {/* Map iframe - Use fetched embed URL */}
+                {/* motion.div wraps iframe for animation if desired */}
                 <motion.div
-                    className="relative rounded-lg overflow-hidden shadow-md h-[400px]"
+                    className="w-full rounded-lg shadow-xl overflow-hidden aspect-video" // Responsive aspect ratio
+                    // Simple mount animation for the map container
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-100px" }} // Trigger when map enters view
                     transition={{ duration: 0.6 }}
                 >
-                    {!isMapLoaded && (
-                        <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-                            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
-                        </div>
-                    )}
-
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2882.9651768987847!2d5.094641315535701!3d43.63964097912152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b61033bd0d208b%3A0xddd33dadfce93f36!2sBlvd%20des%20Ventadouiro%2C%2013300%20Salon-de-Provence!5e0!3m2!1sfr!2sfr!4v1675876245281!5m2!1sfr!2sfr"
-                        className="w-full h-full border-0"
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        onLoad={() => setIsMapLoaded(true)}
-                        title="Localisation de Gergom Events"
+                        src={mapEmbedUrl} // Use the fetched embed URL
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }} // Remove default iframe border
+                        allowFullScreen={false} // Allow or disallow fullscreen
+                        loading="lazy" // Lazy load the map
+                        // Example Security sandbox - refine if needed based on embed source requirements
+                        // sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads"
                     ></iframe>
-
-                    {/* Carte de visite sur la carte */}
-                    <div className="absolute top-4 left-4 bg-white p-4 rounded-lg shadow-lg max-w-xs">
-                        <h3 className="font-bold text-gray-800 mb-2">Gergom Events</h3>
-                        <p className="text-gray-600 text-sm mb-2">Bld des Ventadouiro<br/>13300 Salon de Provence</p>
-                        <a
-                            href="https://goo.gl/maps/YourGoogleMapsLink"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-red-600 text-sm hover:text-red-700 inline-flex items-center"
-                        >
-                            Itinéraire
-                            <svg className="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                        </a>
-                    </div>
                 </motion.div>
             </div>
         </section>
-    )
-}
+    );
+};
+
+export default MapSection;

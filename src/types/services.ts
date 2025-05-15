@@ -4,6 +4,8 @@
 // You can get more detailed types from @portabletext/types
 // import { PortableTextRawBlock } from '@portabletext/types';
 
+import { GoogleReviewsSectionData, ReviewItem } from '@/types/homepage';
+
 // Basic PortableText block type, suitable for most simple cases.
 // If you have complex blocks (like custom components embedded in rich text),
 // you'll need a more detailed union type here.
@@ -96,3 +98,4 @@ export interface HeaderServiceMenuItem {
         // other color properties...
     } | null; // Color might be optional
 }
+

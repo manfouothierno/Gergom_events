@@ -2,7 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import {getHeaderServiceMenuItems} from "@/lib/services";
+import {getFooterData, getHeaderServiceMenuItems} from "@/lib/services";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,13 +17,14 @@ export default async function RootLayout({
     children: React.ReactNode
 }) {
     const headerServiceMenuItems = await getHeaderServiceMenuItems();
-    console.log(headerServiceMenuItems);
+    const footerData = await getFooterData();
+    // console.log(headerServiceMenuItems);
     return (
         <html lang="fr">
             <body className={inter.className}>
                 <Header serviceMenuItems={headerServiceMenuItems} />
                     <main>{children}</main>
-                <Footer />
+                {footerData && <Footer footerData={footerData} />}
             </body>
         </html>
     )
