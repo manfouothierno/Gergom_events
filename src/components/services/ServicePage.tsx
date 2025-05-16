@@ -34,7 +34,7 @@ interface ServicePageProps {
 
 const ServicePage = ({ service }: ServicePageProps) => {
     // Safely get the hex color string or use a fallback (e.g., transparent or black)
-    const hexColor = service.color?.hex;
+    const hexColor = service.color?.hex as string;
 
     // Get the icon component from the string name
     const ServiceIcon = getIconComponent(service.iconName);
@@ -91,7 +91,7 @@ const ServicePage = ({ service }: ServicePageProps) => {
             {/* Pass the faq array. ServiceFAQ expects FaqItem[]. */}
             {/* ServiceFAQ MUST be updated to render Portable Text for answers. */}
             <ServiceFAQ
-                questions={service.faq || undefined}
+                questions={service.faq || []}
                 color={hexColor} // Pass the hex string
             />
 

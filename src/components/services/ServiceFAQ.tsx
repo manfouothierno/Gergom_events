@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FAQItem } from '@/types/services'
 import { FaChevronDown } from 'react-icons/fa'
+import { PortableText } from '@portabletext/react'
 
 interface ServiceFAQProps {
     questions: FAQItem[];
@@ -12,7 +13,7 @@ interface ServiceFAQProps {
 }
 
 const ServiceFAQ = ({ questions, color }: ServiceFAQProps) => {
-    const [activeIndex, setActiveIndex] = useState<number | null>(null)
+    const [activeIndex, setActiveIndex] = useState<number | null>(0)
 
     const toggleQuestion = (index: number) => {
         setActiveIndex(activeIndex === index ? null : index)
@@ -53,7 +54,7 @@ const ServiceFAQ = ({ questions, color }: ServiceFAQProps) => {
                                         transition={{ duration: 0.3 }}
                                     >
                                         <div className="p-5 pt-0 text-gray-600">
-                                            {faq.answer}
+                                            <PortableText value={faq.answer} />
                                         </div>
                                     </motion.div>
                                 )}

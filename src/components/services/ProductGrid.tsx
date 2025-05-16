@@ -53,10 +53,9 @@ const ProductGrid = ({ products }: ProductGridProps) => {
                 >
                     {/* Image du produit */}
                     <div className="relative h-48">
-                        <Image
+                        <img
                             src={product.image}
                             alt={product.name}
-                            fill
                             className="object-cover"
                         />
 
