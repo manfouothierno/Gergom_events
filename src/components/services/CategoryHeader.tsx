@@ -70,7 +70,7 @@ const CategoryHeader = ({ title, subtitle, color, iconName, bannerImage }: Categ
 
             {/* Contenu */}
             <div className="container mx-auto px-4 h-full relative z-10">
-                <div className="flex flex-col justify-center h-full max-w-2xl">
+                <div className="flex flex-col justify-center h-full mt-4 max-w-2xl">
                     {/* Icône - Safely render the icon component */}
                     {/*{ServiceIcon && (*/}
                     {/*    <motion.div*/}
