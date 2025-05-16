@@ -43,7 +43,7 @@ const CategoryHeader = ({ title, subtitle, color, iconName, bannerImage }: Categ
     const ServiceIcon = getIconComponentByName(iconName || undefined); // Pass name string
 
     return (
-        <section className="relative h-80 sm:h-96 md:h-[450px] mt-5 overflow-hidden">
+        <section className="relative h-96 sm:h-96 md:h-[550px] mt-5 overflow-hidden">
             {/* Image de fond avec overlay */}
             <div className="absolute inset-0">
                 {/* Use bannerImage URL and safely check if it exists */}
