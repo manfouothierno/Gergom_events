@@ -72,17 +72,17 @@ const CategoryHeader = ({ title, subtitle, color, iconName, bannerImage }: Categ
             <div className="container mx-auto px-4 h-full relative z-10">
                 <div className="flex flex-col justify-center h-full max-w-2xl">
                     {/* Icône - Safely render the icon component */}
-                    {ServiceIcon && (
-                        <motion.div
-                            className="flex items-center justify-center w-16 h-16 rounded-full bg-white/20 text-white text-3xl mb-6"
-                            // Simple mount animation (opacity & scale)
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <ServiceIcon /> {/* Render the dynamically determined icon */}
-                        </motion.div>
-                    )}
+                    {/*{ServiceIcon && (*/}
+                    {/*    <motion.div*/}
+                    {/*        className="flex items-center justify-center w-16 h-16 rounded-full bg-white/20 text-white text-3xl mb-6"*/}
+                    {/*        // Simple mount animation (opacity & scale)*/}
+                    {/*        initial={{ opacity: 0, scale: 0.8 }}*/}
+                    {/*        animate={{ opacity: 1, scale: 1 }}*/}
+                    {/*        transition={{ duration: 0.6 }}*/}
+                    {/*    >*/}
+                    {/*        <ServiceIcon /> /!* Render the dynamically determined icon *!/*/}
+                    {/*    </motion.div>*/}
+                    {/*)}*/}
 
 
                     {/* Titre */}
