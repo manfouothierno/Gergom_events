@@ -128,21 +128,21 @@ const HeroSection = ({ slides }: HeroSectionProps) => {
                             {/* Kept as is for now */}
                             <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
                                 {/* Replace with dynamic buttons if fetched from Sanity */}
-                                <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.8 }}> {/* Added a simple animation for the container */}
-                                    <div >
-                                        <motion.button
-                                            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors shadow-lg" // Using example primary color
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                        >
-                                            Découvrir nos services
-                                        </motion.button>
-                                    </div>
-                                </motion.div>
+                                {/*<motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.8 }}> /!* Added a simple animation for the container *!/*/}
+                                {/*    <div >*/}
+                                {/*        <motion.button*/}
+                                {/*            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors shadow-lg" // Using example primary color*/}
+                                {/*            whileHover={{ scale: 1.05 }}*/}
+                                {/*            whileTap={{ scale: 0.95 }}*/}
+                                {/*        >*/}
+                                {/*            Découvrir nos services*/}
+                                {/*        </motion.button>*/}
+                                {/*    </div>*/}
+                                {/*</motion.div>*/}
                                 <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1 }}> {/* Added a simple animation for the container with a slight delay */}
                                     <Link href="/contact">
                                         <motion.button
-                                            className="bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 text-black border border-white px-6 py-3 rounded-md text-lg font-medium transition-colors shadow-lg"
+                                            className="bg-red-600 hover:bg-red-700 text-white backdrop-blur-sm hover:bg-opacity-30   px-6 py-3 rounded-md text-lg font-medium transition-colors shadow-lg"
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
                                         >

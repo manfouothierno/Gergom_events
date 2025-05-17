@@ -90,7 +90,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                                 </video>
 
                                 {/* Logo Overlay */}
-                                <div className="absolute bottom-4 right-4 bg-white bg-opacity-80 rounded p-2">
+                                <div className="sm:hidden absolute bottom-4 right-4 bg-white bg-opacity-80 rounded p-2">
                                     <Image
                                         src="/logo_gergom.jpg"
                                         alt="Gergom Events Logo"
@@ -128,30 +128,30 @@ export default function AboutSection({ data }: AboutSectionProps) {
                                     </div>
                                 )}
 
-                                {data.aboutButtonText && data.aboutButtonHref && (
-                                    <Link href={data.aboutButtonHref}>
-                                        <motion.button
-                                            className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition-colors shadow-md inline-flex items-center"
-                                            whileHover={{ scale: 1.03 }}
-                                            whileTap={{ scale: 0.98 }}
-                                        >
-                                            {data.aboutButtonText}
-                                            <svg
-                                                className="ml-2 w-4 h-4"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                                />
-                                            </svg>
-                                        </motion.button>
-                                    </Link>
-                                )}
+                                {/*{data.aboutButtonText && data.aboutButtonHref && (*/}
+                                {/*    <Link href={data.aboutButtonHref}>*/}
+                                {/*        <motion.button*/}
+                                {/*            className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition-colors shadow-md inline-flex items-center"*/}
+                                {/*            whileHover={{ scale: 1.03 }}*/}
+                                {/*            whileTap={{ scale: 0.98 }}*/}
+                                {/*        >*/}
+                                {/*            {data.aboutButtonText}*/}
+                                {/*            <svg*/}
+                                {/*                className="ml-2 w-4 h-4"*/}
+                                {/*                fill="none"*/}
+                                {/*                stroke="currentColor"*/}
+                                {/*                viewBox="0 0 24 24"*/}
+                                {/*            >*/}
+                                {/*                <path*/}
+                                {/*                    strokeLinecap="round"*/}
+                                {/*                    strokeLinejoin="round"*/}
+                                {/*                    strokeWidth="2"*/}
+                                {/*                    d="M14 5l7 7m0 0l-7 7m7-7H3"*/}
+                                {/*                />*/}
+                                {/*            </svg>*/}
+                                {/*        </motion.button>*/}
+                                {/*    </Link>*/}
+                                {/*)}*/}
                             </motion.div>
                         </div>
                     )}

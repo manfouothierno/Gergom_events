@@ -76,7 +76,7 @@ const Header = ({ serviceMenuItems }: HeaderProps) => {
                     {/* Logo */}
                     <Link href="/" className="flex-shrink-0  z-50">
                         <Image
-                            src="/logo_gergom.jpg"
+                            src="/logo_gergom.png"
                             alt="Gergom Events"
                             width={isScrolled ? 110 : 130}
                             height={isScrolled ? 30 : 35}
