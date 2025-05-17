@@ -37,6 +37,10 @@ export default function PostGrid({ categories }: PostGridProps) { // Accept cate
                 // Fetch posts from Sanity using the library function
                 // Pass the categoryFilterSlug to filter the query
                 const fetchedPosts = await getPosts({ categorySlug: categoryFilterSlug });
+
+                console.log('Fetching posts for category', categoryFilterSlug);
+                console.log('Fetching posts ', fetchedPosts);
+
                 setPosts(fetchedPosts); // Update state with fetched posts
             } catch (err) {
                 console.error("Failed to fetch posts:", err);
