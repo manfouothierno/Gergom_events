@@ -79,7 +79,7 @@ const Header = ({ serviceMenuItems }: HeaderProps) => {
                             src="/logo_gergom.jpg"
                             alt="Gergom Events"
                             width={isScrolled ? 110 : 130}
-                            height={isScrolled ? 35 : 40}
+                            height={isScrolled ? 30 : 35}
                             className="h-auto transition-all duration-300"
                             priority
                         />
