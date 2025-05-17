@@ -79,7 +79,7 @@ export default async function ContactPage() {
             {/* Banner Section */}
             {/* Only render banner if title, subtitle, or image exist */}
             {(bannerImage || bannerTitle || bannerSubtitle) && (
-                <section className="relative h-[400px] md:h-[500px]  pt-4 bg-gray-900 overflow-hidden">
+                <section className="relative h-[400px] md:h-[500px]  pt-5 bg-gray-900 overflow-hidden">
                     {bannerImage && ( // Render image if URL exists
                         <img
                             src={bannerImage} // Use fetched URL
