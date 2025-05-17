@@ -15,7 +15,8 @@ import Counter, {getIconComponentByName} from "./Counter";                      
 // Import Sanity data types
 import { AboutSectionData, StatItem } from '@/types/aboutSection';
 // Import Portable Text Renderer (needed here if intro text is blockContent)
-import { PortableText } from '@portabletext/react'; // If your intro text is Block Content
+import { PortableText } from '@portabletext/react';
+import ValuesSection from "@/components/about/ValuesSection"; // If your intro text is Block Content
 
 
 // Assume Counter component is separate and expects StatItem structure,
@@ -159,13 +160,17 @@ const AboutSection = ({ data }: AboutSectionProps) => { // Accept data as prop
                 {/* History Timeline - Pass timelineEvents data */}
                 {/* Render section only if timeline events exist */}
                 {data.timelineEvents && data.timelineEvents.length > 0 && (
-                    <div className="mt-20"> {/* Added some margin top to separate sections */}
+                    <div className="py-2"> {/* Added some margin top to separate sections */}
                         {data.timelineTitle && ( // Optional title for timeline
                             <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">{data.timelineTitle}</h2>
                         )}
-                        <HistoryTimeline events={data.timelineEvents} /> {/* Pass the array of events */}
+                       <div className={'py-4'}>
+                           <HistoryTimeline events={data.timelineEvents} /> {/* Pass the array of events */}
+                       </div>
                     </div>
                 )}
+
+                <ValuesSection />
 
                 {/* Team Section - Pass team data */}
                 {/* Render section only if team members exist */}

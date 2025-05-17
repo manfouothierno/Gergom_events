@@ -19,6 +19,7 @@ type MainMenuItem = {
 
 const mainItems: MainMenuItem[] = [
     { name: 'Accueil', href: '/' },
+    { name: 'Nos Prestations', href: '/nos-prestations' },
     { name: 'Contact', href: '/contact' },
 ];
 
