@@ -53,10 +53,10 @@ export async function sanityFetch<T>({
                                          cache
                                      }: SanityFetchOptions): Promise<T> {
     return client.fetch<T>(query, params, {
-        next: {
-            // revalidate: cache === 'no-store' ? 0 : revalidate, // 'no-store' bypasses caching
-            tags
-        },
+        // next: {
+        //     // revalidate: cache === 'no-store' ? 0 : revalidate, // 'no-store' bypasses caching
+        //     tags
+        // },
         // cache: cache // Pass explicit cache option if provided ('no-store', 'force-cache', etc.)
     });
 }

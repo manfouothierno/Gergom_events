@@ -173,23 +173,23 @@ const ServicesSection = ({ services }: ServicesSectionProps) => { // Accept serv
                 </motion.div>
 
                 {/* "Discover All Services" button (kept from original code) */}
-                <motion.div
-                    className="text-center mt-12"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6, duration: 0.6 }}
-                >
-                    <Link href="/nos-services">
-                        <motion.button
-                            className="bg-red-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-red-700 transition-colors shadow-md"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.98 }}
-                        >
-                            Découvrir tous nos services
-                        </motion.button>
-                    </Link>
-                </motion.div>
+                {/*<motion.div*/}
+                {/*    className="text-center mt-12"*/}
+                {/*    initial={{ opacity: 0 }}*/}
+                {/*    whileInView={{ opacity: 1 }}*/}
+                {/*    viewport={{ once: true }}*/}
+                {/*    transition={{ delay: 0.6, duration: 0.6 }}*/}
+                {/*>*/}
+                {/*    <Link href="/nos-services">*/}
+                {/*        <motion.button*/}
+                {/*            className="bg-red-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-red-700 transition-colors shadow-md"*/}
+                {/*            whileHover={{ scale: 1.05 }}*/}
+                {/*            whileTap={{ scale: 0.98 }}*/}
+                {/*        >*/}
+                {/*            Découvrir tous nos services*/}
+                {/*        </motion.button>*/}
+                {/*    </Link>*/}
+                {/*</motion.div>*/}
             </div>
         </section>
     );

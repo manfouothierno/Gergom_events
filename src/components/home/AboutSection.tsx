@@ -161,7 +161,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                 {data.timelineEvents && data.timelineEvents.length > 0 && (
                     <div className="py-16">
                         {data.timelineTitle && (
-                            <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">
+                            <h2 className="text-4xl font-bold mb-10 text-center text-red-500">
                                 {data.timelineTitle}
                             </h2>
                         )}
