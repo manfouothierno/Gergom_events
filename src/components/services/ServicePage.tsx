@@ -41,7 +41,7 @@ const ServicePage = ({ service }: ServicePageProps) => {
 
     return (
         // Ensure this main wrapper handles scrolling/min height correctly for your layout
-        <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <main className="min-h-screen bg-gradient-to-b py-5 from-gray-50 to-white">
 
             {/* Category Header */}
             {/* Pass data shaped for the CategoryHeader component */}

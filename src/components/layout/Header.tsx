@@ -68,7 +68,7 @@ const Header = ({ serviceMenuItems }: HeaderProps) => {
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                isScrolled ? 'bg-white shadow-sm py-2' : 'bg-white/95 backdrop-blur-sm py-3'
+                isScrolled ? 'bg-white shadow-sm py-2' : 'bg-white/95 py-3'
             }`}
         >
             <div className="container mx-auto px-4">
@@ -127,7 +127,7 @@ const Header = ({ serviceMenuItems }: HeaderProps) => {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="lg:hidden flex items-center justify-center w-10 h-10 relative z-50"
+                        className="lg:hidden flex items-center justify-center w-10 h-10 mt-4 relative z-50"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     >
@@ -180,7 +180,7 @@ const Header = ({ serviceMenuItems }: HeaderProps) => {
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        className="fixed inset-0 bg-white z-40 lg:hidden"
+                        className="fixed inset-0 bg-white mt-5 z-40 lg:hidden"
                         initial={{ x: '100%', opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         exit={{ x: '100%', opacity: 0 }}
@@ -188,8 +188,8 @@ const Header = ({ serviceMenuItems }: HeaderProps) => {
                     >
                         <div className="container mx-auto px-6 pt-20 pb-6 h-full overflow-y-auto">
                             {/* Main Menu */}
-                            <nav className="border-b border-gray-100 pb-4 mb-4">
-                                <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wider">
+                            <nav className="border-b border-gray-100 pb-4 py-4 mb-4">
+                                <h3 className="text-sm font-semibold text-gray-400 mt-5  mb-3 uppercase tracking-wider">
                                     Menu principal
                                 </h3>
                                 <ul className="space-y-3">
