@@ -118,7 +118,7 @@ const HeroSection = ({ slides }: HeroSectionProps) => {
 
                             {/* Use fetched subtitle */}
                             {currentSlideData.subtitle && (
-                                <p className="text-xl md:text-2xl mb-10 text-gray-200">
+                                <p className="text-xl md:text-2xl mb-10 text-red-600">
                                     {currentSlideData.subtitle}
                                 </p>
                             )}
