@@ -170,7 +170,7 @@ export async function getProductsForServiceByCategory(serviceSlug: string, categ
 
 
 // Selects service documents ordered by name, only if slug is defined.
-const headerServiceMenuQuery = `*[_type == "service" && defined(slug.current)] | order(name asc){
+const headerServiceMenuQuery = `*[_type == "service" && defined(slug.current)] | order(position asc){
   _id,
   name,
   "slug": slug.current, // Alias slug.current to 'slug' field
