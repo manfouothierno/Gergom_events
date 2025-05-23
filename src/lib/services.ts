@@ -11,7 +11,7 @@ import {SiteFooterData} from "@/types/siteSettings";
 import {ContactPageData} from "@/types/contactPage";
 
 // --- New query to fetch data for the Service list on the homepage ---
-const allServiceListingDataQuery = `*[_type == "service" && defined(slug.current)] | order(name asc){ // Adjust ordering as needed
+const allServiceListingDataQuery = `*[_type == "service" && defined(slug.current)] | order(position asc){ // Adjust ordering as needed
     _id,
     "slug": slug.current,
     name,
