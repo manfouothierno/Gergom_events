@@ -19,7 +19,7 @@ export default function BlogHeader() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Nos Prestations</h1>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Prestations et séminaire</h1>
                     <p className="text-xl text-white/90">
                         Découvrez toutes nos réalisations et inspirez-vous
                         pour votre prochain événement en région PACA

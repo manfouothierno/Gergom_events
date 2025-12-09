@@ -9,13 +9,28 @@ import HistoryTimeline from '@/components/about/HistoryTimeline'
 import CoverageMap from '@/components/about/CoverageMap'
 import ClientsSlider from '@/components/about/ClientsSlider'
 import ContactCTA from '@/components/shared/ContactCTA'
+import { getAboutSectionData } from '@/lib/services'
+import { PortableText } from '@portabletext/react'
 
 export const metadata = {
     title: 'À propos de Gergom Events | Notre histoire et nos valeurs',
     description: '15 ans d\'expertise dans l\'événementiel technique en région PACA. Découvrez l\'histoire, les valeurs et l\'équipe de Gergom Events, spécialiste en sonorisation, éclairage et matériel événementiel.',
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+    const aboutData = await getAboutSectionData();
+
+    if (!aboutData) {
+        return (
+            <main className="bg-white py-20 text-center">
+                <div className="container mx-auto px-4">
+                    <h1 className="text-2xl font-bold text-gray-800">Contenu non disponible</h1>
+                    <p className="text-gray-600">Impossible de charger les informations de la page À propos.</p>
+                </div>
+            </main>
+        );
+    }
+
     return (
         <main className="bg-white">
             {/* Bannière d'introduction avec parallaxe */}
@@ -25,21 +40,33 @@ export default function AboutPage() {
             <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center mb-16">
-                        <h1 className="text-4xl font-bold mb-6 text-gray-800">Notre histoire</h1>
-                        <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                            Depuis 2008, Gergom Events s'est imposé comme un acteur incontournable
-                            de l'événementiel technique en région PACA, au service des professionnels,
-                            des institutionnels et des particuliers.
-                        </p>
-                        <p className="text-gray-600 leading-relaxed">
-                            Fondée par Gérald Gomez, passionné de technique événementielle et d'expériences
-                            immersives, notre entreprise a su évoluer en restant fidèle à sa vision :
-                            mettre l'expertise technique au service de l'émotion et de la créativité.
-                        </p>
+                        <h1 className="text-4xl font-bold mb-6 text-gray-800">
+                            {aboutData.introductionTitle || "Notre histoire"}
+                        </h1>
+                        {aboutData.introductionText ? (
+                             <div className="text-xl text-gray-600 mb-8 leading-relaxed prose prose-lg mx-auto">
+                                <PortableText value={aboutData.introductionText} />
+                             </div>
+                        ) : (
+                            <>
+                                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                                    Depuis 2008, Gergom Events s'est imposé comme un acteur incontournable
+                                    de l'événementiel technique en région PACA, au service des professionnels,
+                                    des institutionnels et des particuliers.
+                                </p>
+                                <p className="text-gray-600 leading-relaxed">
+                                    Fondée par Gérald Gomez, passionné de technique événementielle et d'expériences
+                                    immersives, notre entreprise a su évoluer en restant fidèle à sa vision :
+                                    mettre l'expertise technique au service de l'émotion et de la créativité.
+                                </p>
+                            </>
+                        )}
                     </div>
 
                     {/* Timeline d'histoire */}
-                    <HistoryTimeline />
+                    {aboutData.timelineEvents && (
+                        <HistoryTimeline events={aboutData.timelineEvents} />
+                    )}
                 </div>
             </section>
 
@@ -47,10 +74,26 @@ export default function AboutPage() {
             <ValuesSection />
 
             {/* Notre équipe */}
-            <TeamSection />
+            <section className="py-16 bg-gray-50">
+                <div className="container mx-auto px-4">
+                     <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold mb-6 text-gray-800">
+                            {aboutData.teamSectionTitle || "Notre équipe"}
+                        </h2>
+                        {aboutData.teamSectionDescription && (
+                            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                                {aboutData.teamSectionDescription}
+                            </p>
+                        )}
+                    </div>
+                    {aboutData.teamMembers && (
+                        <TeamSection members={aboutData.teamMembers} />
+                    )}
+                </div>
+            </section>
 
             {/* Zone d'intervention */}
-            <section className="py-16 bg-gray-50">
+            <section className="py-16">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                         <div className="w-full md:w-1/2">
@@ -91,20 +134,32 @@ export default function AboutPage() {
             </section>
 
             {/* Nos clients */}
-            <section className="py-16">
+            <section className="py-16 bg-gray-50">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">Ils nous font confiance</h2>
-                    <ClientsSlider />
+                    <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">
+                        {aboutData.clientSectionTitle || "Ils nous font confiance"}
+                    </h2>
+                    
+                    {aboutData.clients && (
+                        <ClientsSlider clients={aboutData.clients} />
+                    )}
 
                     <div className="mt-14 max-w-3xl mx-auto text-center">
-                        <p className="text-gray-600 mb-8">
-                            Plus de 1000 clients nous ont fait confiance au fil des années, des institutions locales
-                            aux entreprises internationales, en passant par des particuliers exigeants. Chaque événement
-                            est pour nous l'occasion de créer de nouvelles relations durables basées sur la satisfaction
-                            et la confiance.
-                        </p>
-                        <Link href="/realisations" className="inline-flex items-center text-red-600 font-medium hover:text-red-700">
-                            Découvrir nos réalisations
+                        {aboutData.clientSectionText ? (
+                             <div className="text-gray-600 mb-8 prose prose-lg mx-auto">
+                                <PortableText value={aboutData.clientSectionText} />
+                             </div>
+                        ) : (
+                             <p className="text-gray-600 mb-8">
+                                Plus de 1000 clients nous ont fait confiance au fil des années, des institutions locales
+                                aux entreprises internationales, en passant par des particuliers exigeants. Chaque événement
+                                est pour nous l'occasion de créer de nouvelles relations durables basées sur la satisfaction
+                                et la confiance.
+                            </p>
+                        )}
+                       
+                        <Link href={aboutData.clientSectionLinkHref || "/realisations"} className="inline-flex items-center text-red-600 font-medium hover:text-red-700">
+                            {aboutData.clientSectionLinkText || "Découvrir nos réalisations"}
                             <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
@@ -113,13 +168,13 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* Certifications */}
-            <section className="py-16 bg-gray-50">
+            {/* Certifications - Static for now as per plan */}
+            <section className="py-16">
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-3xl font-bold mb-10 text-gray-800">Nos certifications</h2>
 
                     <div className="flex flex-wrap justify-center gap-8 mb-10">
-                        <div className="bg-white p-6 rounded-lg shadow-sm w-64 flex flex-col items-center">
+                        <div className="bg-white p-6 rounded-lg shadow-sm w-64 flex flex-col items-center border border-gray-100">
                             <Image
                                 src="/images/about/certification1.svg"
                                 alt="Certification sécurité"
@@ -131,7 +186,7 @@ export default function AboutPage() {
                             <p className="text-sm text-gray-600">Certification pour les établissements recevant du public</p>
                         </div>
 
-                        <div className="bg-white p-6 rounded-lg shadow-sm w-64 flex flex-col items-center">
+                        <div className="bg-white p-6 rounded-lg shadow-sm w-64 flex flex-col items-center border border-gray-100">
                             <Image
                                 src="/images/about/certification2.svg"
                                 alt="Certification qualité"
@@ -143,7 +198,7 @@ export default function AboutPage() {
                             <p className="text-sm text-gray-600">Management de la qualité et satisfaction client</p>
                         </div>
 
-                        <div className="bg-white p-6 rounded-lg shadow-sm w-64 flex flex-col items-center">
+                        <div className="bg-white p-6 rounded-lg shadow-sm w-64 flex flex-col items-center border border-gray-100">
                             <Image
                                 src="/images/about/certification3.svg"
                                 alt="Certification environnement"
