@@ -17,9 +17,6 @@ import Faq from '@/components/contact/Faq'; // Will need FAQ data (array)
 import MapSection from '@/components/contact/MapSection'; // Will need map config data
 import OtherContactMethodsSection from '@/components/contact/OtherContactMethodsSection'; // You'll need to create/update this
 
-// Revalidation tag setup (optional but good practice for SSG/ISR)
-export const revalidate = 3600; // Revalidate contact page every hour
-
 // --- Dynamic Metadata Generation ---
 export async function generateMetadata(): Promise<Metadata> {
     // Fetch the contact page data (same data fetched for the page content)

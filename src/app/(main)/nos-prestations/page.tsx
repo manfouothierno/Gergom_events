@@ -5,8 +5,6 @@ import { getAllPostCategories, getFeaturedPost, getRecentPosts } from '@/lib/pos
 import BlogHeader from '@/components/blog/BlogHeader';
 import PrestationsView from '@/components/blog/PrestationsView';
 
-export const revalidate = 3600;
-
 export const metadata: Metadata = {
     title: 'Prestations et séminaire | Gergom Events',
     description:

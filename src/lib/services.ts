@@ -110,8 +110,7 @@ export async function getServiceData(slug: string): Promise<SanityServiceData | 
         query: serviceBySlugQuery,
         params: { slug },
         tags: serviceTags(slug), // Add relevant tags for revalidation
-        cache: 'force-cache', // Use 'force-cache' for SSG, 'no-store' for pure SSR/Dynamic
-        revalidate: 3600 // Or define revalidation time
+        // Using default no-store cache for fresh data on every request
     });
 
     console.log(service);

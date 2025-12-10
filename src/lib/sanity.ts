@@ -7,7 +7,7 @@ import { createClient } from 'next-sanity';
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '8hsiwezp'; // Required
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';   // Required
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2025-05-13'; // Default to latest
-const useCdn = process.env.NODE_ENV === 'production';       // Use CDN in production
+const useCdn = false;       // Disabled CDN to fetch fresh data on every request (no Sanity CDN caching)
 const readToken = process.env.SANITY_API_READ_TOKEN;       // Required for non-public datasets
 
 if (!projectId || !dataset) {
@@ -48,15 +48,15 @@ interface SanityFetchOptions {
 export async function sanityFetch<T>({
                                          query,
                                          params = {},
-                                         revalidate = 3600, // Default cache for 1 hour (adjust as needed)
+                                         revalidate = 0, // No caching - fetch fresh data on every request
                                          tags = [],
-                                         cache
+                                         cache = 'no-store' // Default to no caching for instant updates
                                      }: SanityFetchOptions): Promise<T> {
     return client.fetch<T>(query, params, {
         next: {
-            revalidate: tags.length ? false : revalidate, // If tags are present, rely on on-demand revalidation (or keep time-based as fallback)
+            revalidate: revalidate, // Fresh data on every request
             tags
         },
-        cache: cache // Pass explicit cache option if provided ('no-store', 'force-cache', etc.)
+        cache: cache // Use 'no-store' to bypass cache
     });
 }
